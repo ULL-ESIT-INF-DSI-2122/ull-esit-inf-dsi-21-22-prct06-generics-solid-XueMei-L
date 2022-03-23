@@ -22,19 +22,19 @@ export class Series extends BasicStreamableCollection<typeSerie> {
         let result:typeSerie[] = [];
         switch(data.toLowerCase()) {
             case ('title'):
-                result = this.collectionSeries.filter((n) => n.title = value);
+                result = this.collectionSeries.filter((n) => n.title == value);
                 break;
             case ('year'):
-                result = this.collectionSeries.filter((n) => n.year = Number(value));
+                result = this.collectionSeries.filter((n) => n.year == Number(value));
                 break;
             case ('season'):
-                result = this.collectionSeries.filter((n) => n.season = Number(value));
+                result = this.collectionSeries.filter((n) => n.season == Number(value));
                 break;
-            case ('start'):
-                result = this.collectionSeries.filter((n) => n.star = Number(value));
+            case ('star'):
+                result = this.collectionSeries.filter((n) => n.star >= Number(value));
                 break;
             case ('type'):
-                result = this.collectionSeries.filter((n) => n.type = value);
+                result = this.collectionSeries.filter((n) => n.type == value);
                 break;
             default:
                 console.log(`cannot find serie.`);

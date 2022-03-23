@@ -21,16 +21,16 @@ export class Documentary extends BasicStreamableCollection<typeDocumentary> {
         let result:typeDocumentary[] = [];
         switch(data.toLowerCase()) {
             case ('title'):
-                result = this.collectionFilms.filter((n) => n.title = value);
+                result = this.collectionFilms.filter((n) => n.title == value);
                 break;
             case ('year'):
-                result = this.collectionFilms.filter((n) => n.year = Number(value));
+                result = this.collectionFilms.filter((n) => n.year == Number(value));
                 break;
             case ('type'):
-                result = this.collectionFilms.filter((n) => n.type = value);
+                result = this.collectionFilms.filter((n) => n.type == value);
                 break;
             case ('country'):
-                result = this.collectionFilms.filter((n) => n.country = value);
+                result = this.collectionFilms.filter((n) => n.country == value);
                 break;
             default:
                 console.log(`cannot find documentary.`);
