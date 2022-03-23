@@ -8,4 +8,17 @@ export type typeFilm = {
 
 export class Films extends BasicStreamableCollection<typeFilm> {
     
+    constructor(collectionFilms:typeFilm[]) {
+        super(collectionFilms);
+    }
+
+    search(titleFilm:string, type:string):any {
+
+    }
+
+    print():void{
+        this.collection.forEach((tipo, value) =>{
+            
+        });
+    }
 }

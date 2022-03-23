@@ -7,9 +7,7 @@ import { Streamable } from "./Streamable";
 // Definir el método de imprimir resultado
 export abstract class BasicStreamableCollection<T> implements Streamable<T> {
     
-    constructor(protected collection:[T]) {
-        
-    }
+    constructor(protected collection:[T]) {}
     
     getNumber(){ return this.collection.length; }
     
