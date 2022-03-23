@@ -10,7 +10,7 @@
 >>  GITHUB:      https://github.com/XueMei-L
 ```
 
-Acceso a [GitHub Pages](https://ull-esit-inf-dsi-2122.github.io/ull-esit-inf-dsi-21-22-prct05-objects-classes-interfaces-XueMei-L/
-)
+Acceso a [GitHub Pages]()
 
-Para apredizaje de Coverage [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct05-objects-classes-interfaces-XueMei-L/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct05-objects-classes-interfaces-XueMei-L?branch=main)
+BADGE COVERALLS
+[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct06-generics-solid-XueMei-L/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct06-generics-solid-XueMei-L?branch=main)
