@@ -14,28 +14,28 @@ export class Films extends BasicStreamableCollection<typeFilm> {
         super(collectionFilms);
     }
 
-    getElement():typeFilm[]{
-        return this.collectionFilms;
-    }
+    getElement() { return this.collectionFilms; }
 
     searchElement(data:string, value:string):typeFilm[]{
         let result:typeFilm[] = [];
-        switch(data.toLowerCase()) {
+        switch(data) {
             case ('title'):
-                result = this.collectionFilms.filter((n) => n.title = value);
+                result = this.collectionFilms.filter((n) => n.title == value);
                 break;
             case ('year'):
-                result = this.collectionFilms.filter((n) => n.year = Number(value));
+                result = this.collectionFilms.filter((n) => n.year == Number(value));
                 break;
             case ('type'):
-                result = this.collectionFilms.filter((n) => n.type = value);
+                result = this.collectionFilms.filter((n) => n.type == value);
                 break;
             case ('region'):
-                result = this.collectionFilms.filter((n) => n.region = value);
+                result = this.collectionFilms.filter((n) => n.region == value);
                 break;
             default:
-                console.log(`cannot find film`);
+                console.log(`cannot find film.`);
+                break;
         }
+
         return result;
     }
 

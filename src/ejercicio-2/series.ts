@@ -27,14 +27,17 @@ export class Series extends BasicStreamableCollection<typeSerie> {
             case ('year'):
                 result = this.collectionSeries.filter((n) => n.year = Number(value));
                 break;
+            case ('season'):
+                result = this.collectionSeries.filter((n) => n.season = Number(value));
+                break;
+            case ('start'):
+                result = this.collectionSeries.filter((n) => n.star = Number(value));
+                break;
             case ('type'):
                 result = this.collectionSeries.filter((n) => n.type = value);
                 break;
-            case ('region'):
-                result = this.collectionSeries.filter((n) => n.region = value);
-                break;
             default:
-                console.log(`cannot find film`);
+                console.log(`cannot find serie.`);
         }
         return result;
     }

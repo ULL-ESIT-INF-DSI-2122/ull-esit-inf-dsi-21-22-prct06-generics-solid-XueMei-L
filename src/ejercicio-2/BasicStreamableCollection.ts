@@ -10,8 +10,6 @@ export abstract class BasicStreamableCollection<T> implements StreamableSeach<T>
     
     constructor(protected collection:T[]) {}
     
-    getNumber(){ return this.collection.length; }
-
     addElement(element:T) { this.collection.push(element); }
     
     // Obliga a subclases a implementar los metodos - No se implementa
