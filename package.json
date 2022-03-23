@@ -9,7 +9,7 @@
     "mod": "tsc-watch --onSuccess \"node dist/modificacion/modificacion.js\"",
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls && rm -rf .nyc_output",
-    "doc": "typedoc;"
+    "doc": "typedoc --includes ./src/**/*.ts"
   },
   "keywords": [],
   "author": "",
