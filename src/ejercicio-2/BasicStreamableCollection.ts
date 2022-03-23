@@ -11,6 +11,7 @@ export abstract class BasicStreamableCollection<T> implements Streamable<T> {
     
     getNumber(){ return this.collection.length; }
     
+    // Obliga a subclases a implementar los metodos
     abstract search(name:string, type:string):T[];
 
     abstract print():void;

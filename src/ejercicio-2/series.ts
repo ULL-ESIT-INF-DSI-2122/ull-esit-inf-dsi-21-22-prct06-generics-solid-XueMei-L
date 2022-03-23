@@ -10,5 +10,18 @@ export type typeSerie = {
 
 export class Series extends BasicStreamableCollection<typeSerie> {
 
+    constructor(elementos: typeSerie[]) {
+        super(elementos);
+    }
+
+    search(titleFilm:string, type:string):any {
+
+    }
+
+    print():void{
+        this.collection.forEach((tipo, value) =>{
+            
+        });
+    }
 
 }
