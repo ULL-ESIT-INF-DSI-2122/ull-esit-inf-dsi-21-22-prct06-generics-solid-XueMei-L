@@ -35,9 +35,19 @@ describe('Tests for ejercicio-2 Dsifix', () =>{
             equal([filmShrek, filmTheMatrix]);
         });
 
+        it('Find films from 2021', () =>{
+            expect(collectionFilms.searchElement("year", "2021")).to.deep.
+            equal([filmFastAndFurious9, filmSpiderMan]);
+        });
+
         it('Find films from United Stated', () =>{
             expect(collectionFilms.searchElement("region", "United States")).to.deep.
             equal([filmShrek, filmTheMatrix, filmFastAndFurious9, filmSpiderMan]);
+        });
+
+        it('Cannot find nothing', () =>{
+            expect(collectionFilms.searchElement("lenguage", "spanish")).to.deep.
+            equal([]);
         });
     });
     
@@ -67,9 +77,20 @@ describe('Tests for ejercicio-2 Dsifix', () =>{
             expect(collectionSeries.getElement().length).to.eq(7);
         });
 
+
         it('Find Big Bang Theory series', () =>{
             expect(collectionSeries.searchElement("title", "Big Bang Theory")).to.deep.
             equal([seriesBigBang1, seriesBigBang2, seriesBigBang3, seriesBigBang4]);
+        });
+
+        it('Find series from 2007', () =>{
+            expect(collectionSeries.searchElement("year", "2007")).to.deep.
+            equal([seriesBigBang1]);
+        });
+
+        it('Find series season1', () =>{
+            expect(collectionSeries.searchElement("season", "1")).to.deep.
+            equal([seriesPrisonBreak1, seriesBigBang1]);
         });
 
         it('Find criminal series', () =>{
@@ -81,6 +102,11 @@ describe('Tests for ejercicio-2 Dsifix', () =>{
             expect(collectionSeries.searchElement("star", "4.6")).to.deep.
             equal([seriesPrisonBreak1, seriesPrisonBreak2, 
                 seriesBigBang1, seriesBigBang3, seriesBigBang4]);
+        });
+
+        it('Cannot find nothing', () =>{
+            expect(collectionSeries.searchElement("lenguage", "spanish")).to.deep.
+            equal([]);
         });
         
         
@@ -102,9 +128,29 @@ describe('Tests for ejercicio-2 Dsifix', () =>{
             expect(collectionDocumentary1.getElement().length).to.eq(2);
         });
 
+        it('Find Street food', () =>{
+            expect(collectionDocumentary1.searchElement("title", "Street food")).to.deep.
+            equal([documentaryStreetFood]);
+        });
+
         it('Find history documentaries', () =>{
             expect(collectionDocumentary1.searchElement("type", "history")).to.deep.
             equal([documentaryTheWorldAtWar]);
+        });
+
+        it('Find documentary from 1974', () =>{
+            expect(collectionDocumentary1.searchElement("year", "1974")).to.deep.
+            equal([documentaryTheWorldAtWar]);
+        });
+
+        it('Find Europe documentary', () =>{
+            expect(collectionDocumentary1.searchElement("country", "Europe")).to.deep.
+            equal([documentaryTheWorldAtWar]);
+        });
+
+        it('Cannot find nothing', () =>{
+            expect(collectionDocumentary1.searchElement("star", "4.5")).to.deep.
+            equal([]);
         });
     });
 });
