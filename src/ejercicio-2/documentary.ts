@@ -7,14 +7,14 @@ export type typeDocumentary = {
     type:string;
 }
 
-export class Documentary extends BasicStreamableCollection<documentary> {
+export class Documentary extends BasicStreamableCollection<typeDocumentary> {
 
     constructor(elements:typeDocumentary[]) {
         super(elements);
     }
     
     searchElement(titleFilm:string, type:string):any {
-
+        
     }
 
     print():void{

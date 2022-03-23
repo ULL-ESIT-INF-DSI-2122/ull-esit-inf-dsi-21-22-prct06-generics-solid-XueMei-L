@@ -1,7 +1,7 @@
 import {BasicStreamableCollection} from '../../src/ejercicio-2/BasicStreamableCollection'
 
 export type typeSerie = {
-    tilte:string;
+    title:string;
     year:number;
     season:number;
     star:number;
@@ -10,18 +10,32 @@ export type typeSerie = {
 
 export class Series extends BasicStreamableCollection<typeSerie> {
 
-    constructor(elementos: typeSerie[]) {
-        super(elementos);
+    constructor(private collectionSeries:typeSerie[]) {
+        super(collectionSeries);
     }
 
-    searchElement(titleFilm:string, type:string):any {
-
+    getElement():typeSerie[]{
+        return this.collectionSeries;
     }
 
-    print():void{
-        this.collection.forEach((tipo, value) =>{
-            
-        });
+    searchElement(data:string, value:string):typeSerie[]{
+        let result:typeSerie[] = [];
+        switch(data.toLowerCase()) {
+            case ('title'):
+                result = this.collectionSeries.filter((n) => n.title = value);
+                break;
+            case ('year'):
+                result = this.collectionSeries.filter((n) => n.year = Number(value));
+                break;
+            case ('type'):
+                result = this.collectionSeries.filter((n) => n.type = value);
+                break;
+            case ('region'):
+                result = this.collectionSeries.filter((n) => n.region = value);
+                break;
+            default:
+                console.log(`cannot find film`);
+        }
+        return result;
     }
-
 }
