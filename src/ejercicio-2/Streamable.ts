@@ -1,4 +1,4 @@
 export interface Streamable<T> {
     getNumber():number;
-    search(tipo: string, nombre:string): T[];
+    searchElement(tipo: string, nombre:string): T[];
 }

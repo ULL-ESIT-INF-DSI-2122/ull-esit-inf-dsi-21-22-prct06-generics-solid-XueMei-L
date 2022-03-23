@@ -12,7 +12,8 @@ export class Documentary extends BasicStreamableCollection<documentary> {
     constructor(elements:typeDocumentary[]) {
         super(elements);
     }
-    search(titleFilm:string, type:string):any {
+    
+    searchElement(titleFilm:string, type:string):any {
 
     }
 

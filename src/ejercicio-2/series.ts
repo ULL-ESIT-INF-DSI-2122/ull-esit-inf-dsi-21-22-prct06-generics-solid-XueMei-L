@@ -14,7 +14,7 @@ export class Series extends BasicStreamableCollection<typeSerie> {
         super(elementos);
     }
 
-    search(titleFilm:string, type:string):any {
+    searchElement(titleFilm:string, type:string):any {
 
     }
 

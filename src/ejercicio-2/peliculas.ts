@@ -12,7 +12,7 @@ export class Films extends BasicStreamableCollection<typeFilm> {
         super(collectionFilms);
     }
 
-    search(titleFilm:string, type:string):any {
+    searchElement(titleFilm:string, type:string):any {
 
     }
 
