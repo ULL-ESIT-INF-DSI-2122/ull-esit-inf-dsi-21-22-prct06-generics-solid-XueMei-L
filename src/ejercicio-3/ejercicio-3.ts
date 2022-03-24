@@ -21,7 +21,7 @@ export class CaesarCipher {
             newIndex = newIndex % 26;
             cipher += alphabet[newIndex];
         }
-        console.log(`${cipher}`);
+        // console.log(`${cipher}`);
         return cipher;
     }
     
