@@ -7,58 +7,38 @@ Tipo
 Estadísticas básicas: ataque, 
 defensa, velocidad, daño máximo (HP). 
 */
+import { Fighter, Pokemon } from './fighter'
 
 export class Pokedex {
-    private name:string;
-    private weight:number;
-    private height:number;
-    private type:string;
-    private info = Array(4);
 
-    /**
-     * _Constructor de la clase Pokedex_
-     * @param name nombre de pokemon
-     * @param weight peso de pokemon
-     * @param height altura de pokemon
-     * @param type tipo de pokemon
-     * @param info informacion que contiene ataque, defensa, velocidad, HP de pokemon
-     */
-    constructor(name:string, weight:number, height:number, 
-        type:string, info:number[]) {
-            this.name = name;
-            this.weight = weight;
-            this.height = height;
-            this.type = type;
-            this.info = info;
+    constructor(private fighterColletions:Fighter[]){
+        this.fighterColletions = fighterColletions;
+    }
+
+    getFighter() {
+        console.log(`${this.fighterColletions}`);
+        return this.fighterColletions;
+    }
+
+    getFightersNumber() {
+        return this.fighterColletions.length;
+    }
+    
+    addFighter(newFighter:Fighter) {
+        this.fighterColletions.push(newFighter);
+    }
+
+    findFighter(seachFight:Fighter):boolean{
+        if(this.fighterColletions.find(element => element == seachFight)) {
+            return true;
         }
-
-    getName() { return this.name; }
-    getWeight() { return this.weight; }
-    getHeight() { return this.height; }
-    getType() { return this.type; }
-    getAttack() { return this.info[0]; }
-    getDefense() { return this.info[1]; }
-    getSpeed() { return this.info[2]; }
-    getHP() { return this.info[3]; }
-
-    /**
-     * _Insertar la vida despues de cada batalla_
-     * @param Hp vida de cada pokemon
-     */
-    setHp(Hp:number){ this.info[3] = Hp; }
-
-    /**
-     * _Metodo que muestra la informacion de cada pokemon_
-     */
-    public showPokemon(){
-        console.log(`>> Informacion de ` + this.getName() +
-                  `\n>> Tipo: ` + this.getType() + 
-                  `\n>> Peso: ` + this.getWeight() + 
-                  `\n>> Altura: ` + this.getHeight() +
-                  `\n>> HP: ` + this.getHP() +
-                  `\n>> Ataque: ` + this.getAttack() +
-                  `\n>> Defensa: ` + this.getDefense() +
-                  `\n>> Velocidad: ` + this.getSpeed()
-        );
+        return false;
     }
 }
+
+let a = new Pokemon("pikachu", 50, 45, "electric", {hp:100, attack:10, defence:15, speed:1}, "pikapika");
+let b = new Pokemon("pikachu", 50, 45, "electric", {hp:100, attack:10, defence:15, speed:1}, "pikapika");
+
+let c = new Pokedex([]);
+c.addFighter(a);
+c.getFighter();

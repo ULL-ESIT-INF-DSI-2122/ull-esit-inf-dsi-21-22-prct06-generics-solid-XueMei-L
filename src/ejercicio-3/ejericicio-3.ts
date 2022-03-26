@@ -1,4 +1,4 @@
-import {CaesarCipher} from './ejercicio-3'
+import {CaesarCipher} from './CaesarCipher'
 
 let caesarCipher = new CaesarCipher("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ");
 caesarCipher.cipher("HOLAESTOESUNAPRUEBA", "CLAVE");
