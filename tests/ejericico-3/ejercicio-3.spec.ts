@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { CaesarCipher } from "../../src/ejercicio-3/ejercicio-3";
+import { CaesarCipher } from "../../src/ejercicio-3/CaesarCipher";
 
 
 describe('Tests for Ceaser Cipher', ()=>{

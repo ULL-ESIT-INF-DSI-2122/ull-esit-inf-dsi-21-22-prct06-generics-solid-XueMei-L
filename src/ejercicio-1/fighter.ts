@@ -1,16 +1,29 @@
-// import { Pokemon } from "./pokemon"
-
-export type status = {
-    hp:number;
-    attack:number;
-    defence:number;
-    speed:number;
-}
 
 export abstract class Fighter{
     
+    protected status = {
+        hp: 0,
+        attack: 0,
+        defence: 0,
+        speed:0,
+    }   
+
+    /**
+     * _Constructor de la clase Pokedex_
+     * @param name nombre de fighter
+     * @param weight peso de fighter
+     * @param height altura de fighter
+     * @param type tipo de fighter
+     * @param status hp, attack, defence, and speed of fighter
+     * @param sentence catching phrase of fighter
+     */
     constructor(private readonly name:string, private readonly height:number,
-        private readonly weight:number, private readonly type:string, private status:status, private readonly sentence:string) {
+        private readonly weight:number, private readonly type:string, status:number[], private readonly sentence:string) {
+            this.name = name;
+            this.status.hp = status[0];
+            this.status.attack = status[1];
+            this.status.defence = status[2];
+            this.status.speed = status[3];
 
     }
 
@@ -23,20 +36,31 @@ export abstract class Fighter{
     getDefense() { return this.status.defence; }
     getSpeed() { return this.status.speed; }
     
+    /**
+     * _Inserter new hp after combat_
+     * @param Hp vida de cada fighter
+     */
     public setHp(fighterHP:number) { this.status.hp = fighterHP; }
-    abstract getUniverso():string;
-}
 
-export class Pokemon extends Fighter {
-
-    private readonly universe:string = "Pokemon";
-
-    constructor(name:string, height:number, weight:number, type:string, status:status, sentence:string) {
-        // super(name, height, weight, sentence);
-        super(name, height, weight, type, status, sentence);
+    /**
+     * _Method that to show informacion of every Fighter_
+     */
+    public showInforFighter(){
+        console.log(`>> Informacion de ` + this.getName() +
+                  `\n>> Tipo: ` + this.getType() + 
+                  `\n>> Peso: ` + this.getWeight() + 
+                  `\n>> Altura: ` + this.getHeight() +
+                  `\n>> HP: ` + this.getHP() +
+                  `\n>> Ataque: ` + this.getAttack() +
+                  `\n>> Defensa: ` + this.getDefense() +
+                  `\n>> Velocidad: ` + this.getSpeed() + 
+                  `\n>> Universo: ` + this.getUniverse()
+        );
     }
 
-    getUniverso():string {
-        return "Pokemon";
-    }
+    /**
+     * _Method that every fighter has different universe_
+     */
+    abstract getUniverse():string;
+
 }

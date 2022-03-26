@@ -1,13 +1,6 @@
-//class Pokedex
-
-/*
-Nombre del Pokemon
-Peso y altura
-Tipo
-Estadísticas básicas: ataque, 
-defensa, velocidad, daño máximo (HP). 
-*/
-import { Fighter, Pokemon } from './fighter'
+import { Fighter } from './fighter'
+import { Marvel } from './marvel';
+import { Pokemon } from './pokemon'
 
 export class Pokedex {
 
@@ -23,7 +16,7 @@ export class Pokedex {
     getFightersNumber() {
         return this.fighterColletions.length;
     }
-    
+
     addFighter(newFighter:Fighter) {
         this.fighterColletions.push(newFighter);
     }
@@ -36,9 +29,15 @@ export class Pokedex {
     }
 }
 
-let a = new Pokemon("pikachu", 50, 45, "electric", {hp:100, attack:10, defence:15, speed:1}, "pikapika");
-let b = new Pokemon("pikachu", 50, 45, "electric", {hp:100, attack:10, defence:15, speed:1}, "pikapika");
+let a = new Pokemon("pikachu", 50, 45, "electric", [90, 55, 110, 60], "pikapika");
+// let b = new Pokemon("pikachu", 50, 45, "electric", {hp:100, attack:10, defence:15, speed:1}, "pikapika");
+let as = new Marvel("pikachu", 50, 45, "electric", [90, 55, 110, 60], "pikapika");
 
 let c = new Pokedex([]);
 c.addFighter(a);
 c.getFighter();
+c.addFighter(as);
+c.getFighter();
+console.log(`${c.getFightersNumber()}`);
+console.log(`${c.findFighter(as)}`);
+c.findFighter(as);

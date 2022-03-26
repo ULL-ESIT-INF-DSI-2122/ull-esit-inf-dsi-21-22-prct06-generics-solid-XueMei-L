@@ -1,11 +1,29 @@
-// import 'mocha';
-// import { expect } from 'chai';
-// import { Pokedex } from "../../src/ejercicio-1/pokedex";
+import 'mocha';
+import { expect } from 'chai';
+import { Pokedex } from '../../src/ejercicio-1/pokedex';
+import { Fighter } from '../../src/ejercicio-1/fighter';
+import { Pokemon } from '../../src/ejercicio-1/pokemon';
+
+
 // import { Combat } from '../../src/ejercicio-1/combat';
 
 
-// describe('Tests for POKEMON GAME', ()=>{
+
+
+
+describe('Tests for POKEMON GAME', () => {
+    const pikachu:Pokemon = new Pokemon("pikachu", 50, 45, "electric", [90, 55, 110, 60], "pikapi");
+    const bulbasaur:Pokemon = new Pokemon("bulbasaur", 50, 45, "grass", [49, 49, 45, 45], "bulba, bulb, saur");
+    const charizard:Pokemon = new Pokemon("charizard", 60, 55, "fire", [84, 78, 100, 78], "fuego!!");
+    const blastoise:Pokemon = new Pokemon("blastoise", 60, 55, "water", [83, 100, 78, 89], "blasotoise");
     
+    describe('Tests for POKEMON GAME', () => {
+        it('Tests for Pokemon Class', () =>{
+            expect(pikachu).is.not.null;
+        });
+    });
+
+});
 //     const pikachu:Pokedex = new Pokedex("pikachu", 50, 45, "electric", [90, 55, 110, 60]);
 //     const pikachu2:Pokedex = new Pokedex("pikachu", 50, 45, "electric", [90, 55, 110, 60]);
 //     const bulbasaur:Pokedex = new Pokedex("bulbasaur", 50, 45, "grass", [49, 49, 45, 45]);
