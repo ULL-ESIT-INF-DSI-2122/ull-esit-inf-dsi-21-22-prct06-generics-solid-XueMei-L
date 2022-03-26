@@ -1,13 +1,9 @@
 import 'mocha';
 import { expect } from 'chai';
 import { Pokedex } from '../../src/ejercicio-1/pokedex';
-import { Fighter } from '../../src/ejercicio-1/fighter';
 import { Pokemon } from '../../src/ejercicio-1/pokemon';
 
-
 // import { Combat } from '../../src/ejercicio-1/combat';
-
-
 
 
 

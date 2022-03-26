@@ -4,40 +4,30 @@ import { Pokemon } from './pokemon'
 
 export class Pokedex {
 
-    constructor(private fighterColletions:Fighter[]){
-        this.fighterColletions = fighterColletions;
+    constructor(private fighterColletion:Fighter[]){
+        this.fighterColletion = fighterColletion;
     }
 
+    /**
+     * _Method that to get fighters collection_
+     */
     getFighter() {
-        console.log(`${this.fighterColletions}`);
-        return this.fighterColletions;
+        console.log(`${this.fighterColletion}`);
+        return this.fighterColletion;
     }
 
     getFightersNumber() {
-        return this.fighterColletions.length;
+        return this.fighterColletion.length;
     }
 
     addFighter(newFighter:Fighter) {
-        this.fighterColletions.push(newFighter);
+        this.fighterColletion.push(newFighter);
     }
 
     findFighter(seachFight:Fighter):boolean{
-        if(this.fighterColletions.find(element => element == seachFight)) {
+        if(this.fighterColletion.find(element => element == seachFight)) {
             return true;
         }
         return false;
     }
 }
-
-let a = new Pokemon("pikachu", 50, 45, "electric", [90, 55, 110, 60], "pikapika");
-// let b = new Pokemon("pikachu", 50, 45, "electric", {hp:100, attack:10, defence:15, speed:1}, "pikapika");
-let as = new Marvel("pikachu", 50, 45, "electric", [90, 55, 110, 60], "pikapika");
-
-let c = new Pokedex([]);
-c.addFighter(a);
-c.getFighter();
-c.addFighter(as);
-c.getFighter();
-console.log(`${c.getFightersNumber()}`);
-console.log(`${c.findFighter(as)}`);
-c.findFighter(as);
