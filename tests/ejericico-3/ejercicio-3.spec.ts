@@ -9,23 +9,23 @@ describe('Tests for Ceaser Cipher', ()=>{
 
         let objCC = new CaesarCipher("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ");
 
-        it('Existe una clase CeaserCipher', () => {
+        it('There is a class called CeaserCipher', () => {
             expect(CaesarCipher).not.to.be.null;
         });
 
-        it('Existe un metodo cipher()', () => {
+        it('There is a method called cipher()', () => {
             expect(objCC.cipher("HOLAESTOESUNAPRUEBA","CLAVE")).not.to.be.null;
         });
 
-        it('Existe un metodo decipher()', () => {
+        it('There is a method called decipher()', () => {
             expect(objCC.decipher("KAMWHEULJVGÑWUUGFXF","CLAVE")).not.to.be.null;
         });
 
-        it('Cifrar el mensaje HOLAESTOESUNAPRUEBA usando "CLAVE" = KAMWHEULJVGÑWUUGFXF', () => {
+        it('Cipher the message HOLAESTOESUNAPRUEBA using key "CLAVE" = KAMWHEULJVGÑWUUGFXF', () => {
             expect(objCC.cipher("HOLAESTOESUNAPRUEBA","CLAVE")).to.eq("KAMWHEULJVGÑWUUGFXF");
         });
 
-        it('Descifrar el mensaje HOLAESTOESUNAPRUEBA usando "CLAVE" = KAMWHEULJVGÑWUUGFXF', () => {
+        it('Decipher the message KAMWHEULJVGÑWUUGFXF using key "CLAVE" = HOLAESTOESUNAPRUEBA', () => {
             expect(objCC.decipher("KAMWHEULJVGÑWUUGFXF","CLAVE")).to.eq("HOLAESTOESUNAPRUEBA");
         });
         

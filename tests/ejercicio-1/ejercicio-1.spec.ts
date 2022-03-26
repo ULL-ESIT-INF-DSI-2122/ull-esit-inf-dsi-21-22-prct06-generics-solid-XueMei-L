@@ -17,10 +17,32 @@ describe('Tests for POKEMON GAME', () => {
     const charizard:Pokemon = new Pokemon("charizard", 60, 55, "fire", [84, 78, 100, 78], "fuego!!");
     const blastoise:Pokemon = new Pokemon("blastoise", 60, 55, "water", [83, 100, 78, 89], "blasotoise");
     
+    let PokemonCollletion:Pokedex = new Pokedex([]);
     describe('Tests for POKEMON GAME', () => {
-        it('Tests for Pokemon Class', () =>{
+        it('Tests for Pokemon Class, existen instancias de la clase Pokemon', () =>{
             expect(pikachu).is.not.null;
+            expect(bulbasaur).is.not.null;
+            expect(charizard).is.not.null;
+            expect(blastoise).is.not.null;
         });
+
+        it('Tests for Pokedex Class, añadir pokemons a la collection', () =>{
+            PokemonCollletion.addFighter(pikachu);
+            expect(PokemonCollletion.getFightersNumber()).to.eq(1);
+            PokemonCollletion.addFighter(bulbasaur);
+            PokemonCollletion.addFighter(charizard);
+            PokemonCollletion.addFighter(blastoise);
+            expect(PokemonCollletion.getFightersNumber()).to.eq(4);
+        });
+
+        it('Tests for ', () =>{
+        });
+
+        it('Tests for Pokedex Class', () =>{
+            PokemonCollletion.addFighter(pikachu);
+            expect(PokemonCollletion.getFightersNumber()).to.eq(1);
+        });
+        
     });
 
 });
