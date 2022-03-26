@@ -6,7 +6,11 @@
   "scripts": {
     "eje1": "tsc-watch --onSuccess \"node dist/ejercicio-1/ejercicio-1.js\"",
     "eje3": "tsc-watch --onSuccess \"node dist/ejercicio-3/ejercicio-3.js\"",
+<<<<<<< HEAD
     "mod": "tsc-watch --onSuccess \"node dist/modificacion/Complex.js\"",
+=======
+    "mod": "tsc-watch --onSuccess \"node dist/modificacion/modificacion.js\"",
+>>>>>>> af1f913de98a2bdf42fac4400addbc39b72f56af
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls && rm -rf .nyc_output",
     "doc": "typedoc --includes ./src/**/*.ts"
