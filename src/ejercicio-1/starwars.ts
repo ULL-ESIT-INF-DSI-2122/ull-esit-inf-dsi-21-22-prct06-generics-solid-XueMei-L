@@ -1,6 +1,8 @@
 import { Fighter } from './fighter'
 
-
+/**
+ * _Subclass StatWars_
+ */
 export class StarWars extends Fighter {
 
     private readonly universe:string = "StarWars";

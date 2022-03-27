@@ -1,11 +1,9 @@
 import { Fighter } from "./fighter";
-import { Pokedex } from "./pokedex";
 import { Pokemon } from "./pokemon";
 import { Marvel } from "./marvel";
 import { DcComics } from "./dccomics";
 import { StarWars } from "./starwars";
 import { DragonBall } from "./dragonball";
-import { showInfoFighter } from "./print";
 
 /**
  * _Class Combat_

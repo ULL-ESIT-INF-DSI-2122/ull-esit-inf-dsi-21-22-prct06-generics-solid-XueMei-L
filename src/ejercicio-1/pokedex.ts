@@ -1,7 +1,14 @@
 import { Fighter } from './fighter'
 
+/**
+ * _Class Pokedex_
+ */
 export class Pokedex {
 
+    /**
+     * _Construtor of the class Pokedex_
+     * @param fighterColletion coletion of fighters
+     */
     constructor(private fighterColletion:Fighter[]){
         this.fighterColletion = fighterColletion;
     }
