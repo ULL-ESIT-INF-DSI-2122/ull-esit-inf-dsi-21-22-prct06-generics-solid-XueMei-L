@@ -12,7 +12,7 @@ import { DragonBall } from '../../src/ejercicio-1/dragonball';
 
 describe('Tests for POKEMON GAME', () => {
     //Pokemon
-    const pikachu:Pokemon = new Pokemon("pikachu", 50, 45, "electric", [90, 55, 110], "Pikapi.");
+    const pikachu:Pokemon = new Pokemon("pikachu", 45, 50, "electric", [60, 110, 55], "Pikapi.");
     const bulbasaur:Pokemon = new Pokemon("bulbasaur", 50, 45, "grass", [49, 49, 65], "Bulba, bulb, saur.");
     const charizard:Pokemon = new Pokemon("charizard", 60, 55, "fire", [84, 78, 100], "Fire, fire!!");
     const blastoise:Pokemon = new Pokemon("blastoise", 60, 55, "water", [83, 100, 78], "Blasotoise.");
@@ -27,24 +27,25 @@ describe('Tests for POKEMON GAME', () => {
     const batMan:DcComics = new DcComics("bat man", 188, 95, "superhero", [130, 75, 90], "I am Vengeance! I am the Night! I am Bat Man.");
     const kingShark:DcComics = new DcComics("king shark", 200, 120, "mutanthero", [170, 60, 150], "King Shark is a shark.");
 
-    //Start wars
+    //Star wars
     const darthVader:StarWars = new StarWars("darth varder", 203, 120, "blackwarrior", [135, 90, 60], "I am your father.");
     const lukeSkywalker:StarWars = new StarWars("luke skywalker", 172, 73, "human", [100, 70, 60], "Your'll find. I'm full of suprises.");
     const yoda:StarWars = new StarWars("yoda", 66, 47, "alienware", [90, 80, 110], "A Jedi craves not these things");
 
     //DragonBall
-    const sonGoKu:DragonBall = new DragonBall("son go ku", 175, 80, "supersaiyan", [], "kame hame ka!");
-    const piccolo:DragonBall = new DragonBall("piccolo", 226, 150, "", [] , "");
+    const sonGoKu:DragonBall = new DragonBall("son go ku", 175, 80, "supersaiyan", [100, 102, 76], "kame hame ka!");
+    const piccolo:DragonBall = new DragonBall("piccolo", 226, 150, "demon", [150, 55, 84] , "I will be an even stronger fighter than i already am.");
 
 
     let PokemonCollletion:Pokedex = new Pokedex([]);
     let MarvelColletion:Pokedex = new Pokedex([captainAmerica, ironMan, hulk]);
     let DcComicsColletion:Pokedex = new Pokedex([wonderWoman, batMan, kingShark]);
-    // let DragonBallColletion:Pokedex = new Pokedex([anakinSkywalker, lukeSkywalker]);
+    let StarWarsColletion:Pokedex = new Pokedex([darthVader, lukeSkywalker, yoda]);
+    let DragonBallColletion:Pokedex = new Pokedex([sonGoKu, piccolo]);
 
     describe('Tests for POKEMON GAME', () => {
 
-    // Tests for class ---------------------------------------------------------------------
+        // Tests for class ---------------------------------------------------------------------
 
         it('Tests for Pokemon Class, existen instancias de la clase Pokemon', () =>{
             expect(pikachu).is.not.null;
@@ -60,18 +61,63 @@ describe('Tests for POKEMON GAME', () => {
             PokemonCollletion.addFighter(charizard);
             PokemonCollletion.addFighter(blastoise);
             expect(PokemonCollletion.getFightersNumber()).to.eq(4);
+            expect(pikachu.getUniverse())
         });
 
         it('Tests for Marvel Class, Marvel Colletion', () =>{
-            expect(MarvelColletion.getFighter()).to.eq(3);
+            expect(MarvelColletion.getFightersNumber()).to.eq(3);
             expect(MarvelColletion.getFighter()).to.deep.equal([captainAmerica, ironMan, hulk]);
+            expect()
         });
 
         it('Tests for Dc comics class, Dc comics Colletion', () =>{
-            expect(DcComicsColletion.getFightersNumber()).to.eq(1);
+            expect(DcComicsColletion.getFightersNumber()).to.eq(3);
+            expect(DcComicsColletion.getFighter()).to.deep.equal([wonderWoman, batMan, kingShark]);
         });
-        
+
+        it('Tests for Star Wars class, Star Wars Colletion', () =>{
+            expect(StarWarsColletion.getFightersNumber()).to.eq(3);
+            expect(StarWarsColletion.getFighter()).to.deep.equal([darthVader, lukeSkywalker, yoda]);
+        });
+
+        it('Tests for Dragon Ball class, Dragon Ball Colletion', () =>{
+            expect(DragonBallColletion.getFightersNumber()).to.eq(2);
+            expect(DragonBallColletion.getFighter()).to.deep.equal([sonGoKu, piccolo]);
+        });
     });
+
+
+    // describe('Tests para el objeto pikachu (class Pokedex)', () => {
+        
+    //     it('Nombre = pikachu', () => {
+    //         expect(pikachu.getName()).to.be.equal("pikachu");
+    //     });
+
+    //     it('peso = 50', () => {
+    //         expect(pikachu.getWeight()).to.be.eq(50);
+    //     });
+
+    //     it('altura = 45', () => {
+    //         expect(pikachu.getHeight()).to.be.eq(45);
+    //     });
+
+    //     it('tipo = electric', () => {
+    //         expect(pikachu.getType()).to.be.equal("electric");
+    //     });
+
+    //     it('ataque = 90', () => {
+    //         expect(pikachu.getAttack()).to.be.eq(90);
+    //     });
+
+    //     it('defensa = 55', () => {
+    //         expect(pikachu.getDefense()).to.be.eq(55);
+    //     });
+
+    //     it('HP = 60', () => {
+    //         expect(pikachu.getHP()).to.be.eq(60);
+    //     });
+    // });
+        
 
 });
 
