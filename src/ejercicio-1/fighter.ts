@@ -1,7 +1,7 @@
 
 export abstract class Fighter{
     
-    protected status = {
+    private status = {
         hp: 0,
         attack: 0,
         defence: 0,
@@ -13,7 +13,7 @@ export abstract class Fighter{
      * @param weight peso de fighter
      * @param height altura de fighter
      * @param type tipo de fighter
-     * @param status hp, attack, defence, and speed of fighter
+     * @param status hp, attack, defence
      * @param sentence catching phrase of fighter
      */
     constructor(private readonly name:string, private readonly height:number,

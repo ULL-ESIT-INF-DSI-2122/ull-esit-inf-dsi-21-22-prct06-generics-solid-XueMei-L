@@ -9,15 +9,15 @@ export class Pokedex {
     /**
      * _Method that to get fighters collection_
      */
-    getFighter() {
+    getFighter(): Fighter[] {
         return this.fighterColletion;
     }
 
-    getFightersNumber() {
+    getFightersNumber(): number { 
         return this.fighterColletion.length;
     }
 
-    addFighter(newFighter:Fighter) {
+    addFighter(newFighter:Fighter) :void {
         this.fighterColletion.push(newFighter);
     }
 
