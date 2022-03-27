@@ -17,42 +17,31 @@ export abstract class Fighter{
      * @param sentence catching phrase of fighter
      */
     constructor(private readonly name:string, private readonly height:number,
-        private readonly weight:number, private readonly type:string, status:number[], private readonly sentence:string) {
+        private readonly weight:number, private readonly type:string, status:number[], private readonly tagline:string) {
             this.name = name;
+            this.height = height;
+            this.weight = weight;
+            this.type = type;
             this.status.hp = status[0];
             this.status.attack = status[1];
             this.status.defence = status[2];
-
+            this.tagline = tagline;
     }
 
     getName() { return this.name; }
-    getWeight() { return this.weight; }
     getHeight() { return this.height; }
+    getWeight() { return this.weight; }
     getType() { return this.type; }
     getHP() { return this.status.hp; }
     getAttack() { return this.status.attack; }
     getDefense() { return this.status.defence; }
+    getTagline() { return this.tagline; }
     
     /**
      * _Inserter new hp after combat_
      * @param Hp vida de cada fighter
      */
     public setHp(fighterHP:number) { this.status.hp = fighterHP; }
-
-    /**
-     * _Method that to show informacion of every Fighter_
-     */
-    public showInforFighter(){
-        console.log(`>> Informacion de ` + this.getName() +
-                  `\n>> Tipo: ` + this.getType() + 
-                  `\n>> Peso: ` + this.getWeight() + 
-                  `\n>> Altura: ` + this.getHeight() +
-                  `\n>> HP: ` + this.getHP() +
-                  `\n>> Ataque: ` + this.getAttack() +
-                  `\n>> Defensa: ` + this.getDefense() +
-                  `\n>> Universo: ` + this.getUniverse()
-        );
-    }
 
     /**
      * _Method that every fighter has different universe_

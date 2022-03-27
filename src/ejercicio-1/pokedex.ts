@@ -1,6 +1,4 @@
 import { Fighter } from './fighter'
-import { Marvel } from './marvel';
-import { Pokemon } from './pokemon'
 
 export class Pokedex {
 
@@ -12,7 +10,6 @@ export class Pokedex {
      * _Method that to get fighters collection_
      */
     getFighter() {
-        // console.log(`${this.fighterColletion}`);
         return this.fighterColletion;
     }
 
