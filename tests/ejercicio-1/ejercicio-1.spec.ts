@@ -12,7 +12,7 @@ import { DragonBall } from '../../src/ejercicio-1/dragonball';
 
 describe('Tests for POKEMON GAME', () => {
     //Pokemon
-    const pikachu:Pokemon = new Pokemon("pikachu", 45, 50, "electric", [60, 110, 55], "Pikapi.");
+    const pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", [45, 80, 50], "Pikapi.");
     const bulbasaur:Pokemon = new Pokemon("bulbasaur", 50, 45, "grass", [49, 49, 65], "Bulba, bulb, saur.");
     const charizard:Pokemon = new Pokemon("charizard", 60, 55, "fire", [84, 78, 100], "Fire, fire!!");
     const blastoise:Pokemon = new Pokemon("blastoise", 60, 55, "water", [83, 100, 78], "Blasotoise.");
@@ -67,7 +67,6 @@ describe('Tests for POKEMON GAME', () => {
         it('Tests for Marvel Class, Marvel Colletion', () =>{
             expect(MarvelColletion.getFightersNumber()).to.eq(3);
             expect(MarvelColletion.getFighter()).to.deep.equal([captainAmerica, ironMan, hulk]);
-            expect()
         });
 
         it('Tests for Dc comics class, Dc comics Colletion', () =>{
@@ -87,36 +86,42 @@ describe('Tests for POKEMON GAME', () => {
     });
 
 
-    // describe('Tests para el objeto pikachu (class Pokedex)', () => {
-        
-    //     it('Nombre = pikachu', () => {
-    //         expect(pikachu.getName()).to.be.equal("pikachu");
-    //     });
+    describe('Tests for pikachu (class Pokedex)', () => {
 
-    //     it('peso = 50', () => {
-    //         expect(pikachu.getWeight()).to.be.eq(50);
-    //     });
+        // const pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", [45, 80, 50], "Pikapi.");
 
-    //     it('altura = 45', () => {
-    //         expect(pikachu.getHeight()).to.be.eq(45);
-    //     });
+        it('Nombre = pikachu', () => {
+            expect(pikachu.getName()).to.be.equal("pikachu");
+        });
 
-    //     it('tipo = electric', () => {
-    //         expect(pikachu.getType()).to.be.equal("electric");
-    //     });
+        it('altura = 60', () => {
+            expect(pikachu.getHeight()).to.be.eq(60);
+        });
 
-    //     it('ataque = 90', () => {
-    //         expect(pikachu.getAttack()).to.be.eq(90);
-    //     });
+        it('peso = 50', () => {
+            expect(pikachu.getWeight()).to.be.eq(50);
+        });
 
-    //     it('defensa = 55', () => {
-    //         expect(pikachu.getDefense()).to.be.eq(55);
-    //     });
+        it('tipo = electric', () => {
+            expect(pikachu.getType()).to.be.equal("electric");
+        });
 
-    //     it('HP = 60', () => {
-    //         expect(pikachu.getHP()).to.be.eq(60);
-    //     });
-    // });
+        it('HP = 45', () => {
+            expect(pikachu.getHP()).to.be.eq(45);
+        });
+
+        it('ataque = 50', () => {
+            expect(pikachu.getAttack()).to.be.eq(80);
+        });
+
+        it('defensa = 50', () => {
+            expect(pikachu.getDefense()).to.be.eq(50);
+        });
+
+        it('universe = Pokemon', () => {
+            expect(pikachu.getUniverse()).to.be.eq("Pokemon");
+        });
+    });
         
 
 });
