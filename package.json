@@ -29,6 +29,7 @@
     "tsc-watch": "^4.6.0"
   },
   "dependencies": {
+    "console-log-img": "^4.0.2",
     "prompt": "^1.2.2",
     "scanf": "^1.1.2",
     "typedoc": "^0.22.13"

@@ -13,14 +13,25 @@ export class Pokedex {
         return this.fighterColletion;
     }
 
+    /**
+     * _Method that to get number of fighters_
+     */
     getFightersNumber(): number { 
         return this.fighterColletion.length;
     }
 
+    /**
+     * _Method that to add a ew fighter_
+     * @param newFighter a new fighter
+     */
     addFighter(newFighter:Fighter) :void {
         this.fighterColletion.push(newFighter);
     }
 
+    /**
+     * _Method that to find a fighter in the colection_
+     * @param seachFight 
+     */
     findFighter(seachFight:Fighter):boolean{
         if(this.fighterColletion.find(element => element == seachFight)) {
             return true;

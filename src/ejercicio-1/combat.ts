@@ -5,9 +5,11 @@ import { Marvel } from "./marvel";
 import { DcComics } from "./dccomics";
 import { StarWars } from "./starwars";
 import { DragonBall } from "./dragonball";
-import { showInforFighter } from "./print";
+import { showInfoFighter } from "./print";
 
-
+/**
+ * _Class Combat_
+ */
 export class Combat {
     private fighter1:Fighter;
     private fighter2:Fighter;
@@ -23,9 +25,9 @@ export class Combat {
     }
 
     /**
-     * _Calcular el ataque de pokemon A hacia pokemon B_
-     * @param fighter1 tipo de pokemon atacator
-     * @param fighter2 tipo de pokemon defensor
+     * _Calcular el ataque de Fighter A hacia Fighter B_
+     * @param fighter1 tipo de Fighter atacator
+     * @param fighter2 tipo de Fighter defensor
      * @returns daño realizado por el defensor
      */
     private SepWorldWarGame(fighter1:Fighter, fighter2:Fighter):number{
@@ -34,7 +36,7 @@ export class Combat {
 
         switch(fighter1.getUniverse()) {
 
-            // DragonBall > Marvel > DcComics > Pokemon > StarWars 
+            // DragonBall > Marvel > DcComics > Fighter > StarWars 
 
             case 'Pokemon':
                 if(fighter2 instanceof Pokemon) {
@@ -104,7 +106,7 @@ export class Combat {
                 if(fighter2 instanceof DragonBall) { efectiveness = 0.5; }
             break;
 
-            case 'DcComic':
+            case 'DcComics':
                 if(fighter2 instanceof Pokemon) { efectiveness = 2; }
                 if(fighter2 instanceof Marvel) { efectiveness = 0.5; }
                 if(fighter2 instanceof DcComics) { efectiveness = 1; }
@@ -120,9 +122,8 @@ export class Combat {
                 if(fighter2 instanceof DragonBall) { efectiveness = 2; }
             break;
         }
-        
+
         damage_total = 50 * ( fighter1.getAttack() / fighter2.getDefense() ) * efectiveness;
-        
         return Math.trunc(damage_total);
     }
 
@@ -135,62 +136,83 @@ export class Combat {
         console.log(`Temporal history:    
             With the evolution of science and technology, human beings have started the exploration of the universe. 
             While roaming the universe, they have discovered many colorful universes:
-            [ Pokemon universe, Marvel universe, Dccomics universe, Starswar universe, Dragonball universe ...]
+            [ Fighter universe, Marvel universe, Dccomics universe, Starswar universe, Dragonball universe ...]
             This opens the door to a new universe, Human beings on Earth have created a platform for each universe to 
             experience the battle with different universes, giving everyone a brand new battle experience, 
             experience different universes, battles between different races, strengths, skills, mutations... 
             Countless different and The existence of other universes, who will eventually become the strongest universe!
         `);
         
+        console.log(`\n>> Welcome to " ${this.fighter1.getName()} " from the < ${this.fighter1.getUniverse()} univese > `);
+        console.log(`>> And his opponent " ${this.fighter2.getName()} " from the < ${this.fighter2.getUniverse()} univese >`);
         
-        
-        // console.log(`\n-------- Tu pokemon: --------`);
-        // this.pokemon1.showPokemon();
+        console.log(`\n---------------------------Combat process----------------------------`);
 
-        // console.log(`\n-------- Pokemon enemigo: --------`);
-        // this.pokemon2.showPokemon();
+        let fighter1Hp:number = this.fighter1.getHP();
+        let fighter2Hp:number = this.fighter2.getHP();
+        let round:number = 1;
         
-        // console.log(`\n----------------------------Proceso de combate----------------------------\n`);
+        while (fighter1Hp > 0 || fighter2Hp > 0) {
+            let damage:number = 0;
+            console.log(`\n>> Round: ${round}`);
+            let printHp1:number = fighter1Hp / this.fighter1.getHP() * 10;
+            process.stdout.write(`${this.fighter1.getName()}: `);
+            for(let i = 0; i < printHp1; i++) {
+                process.stdout.write(`🟩`);
+            }
+            process.stdout.write(`   ${fighter1Hp}`);
 
-        // let pokemon1Hp:number = this.pokemon1.getHP();
-        // let pokemon2Hp:number = this.pokemon2.getHP();
-        // let round:number = 1;
-        
-        // while (pokemon1Hp > 0 || pokemon2Hp > 0) {
-        //     let damage:number = 0;
-        //     console.log(`\n>> Round: ${round}`);
+            let printHp2:number = fighter2Hp / this.fighter2.getHP() * 10;
+            process.stdout.write(`\n${this.fighter2.getName()}: `);
+            for(let i = 0; i < printHp2; i++) {
+                process.stdout.write(`🟩`);
+            }
+            process.stdout.write(`   ${fighter2Hp}`);
+
+            if(round % 2 != 0) {
+                damage = this.SepWorldWarGame(this.fighter1, this.fighter2);
+                console.log(`\n>> Fighter "${this.fighter1.getName()}" ha ralizado daño ` + damage + ` a "${this.fighter2.getName()}"`);
+                console.log(`>> ${this.fighter1.getName()}says: "${this.fighter1.getTagline()}"`);
+                fighter2Hp -= damage;
+                console.log(`>> Fighter atacador "${this.fighter1.getName()}" queda ${fighter1Hp} hp`);
+                console.log(`>> Fighter defensor "${this.fighter2.getName()}" queda ${fighter2Hp} hp`);
+            }else{
+                damage = this.SepWorldWarGame(this.fighter2, this.fighter1);
+                console.log(`\n>> Fighter "${this.fighter2.getName()}" ha realizado daño ` + damage + ` a "${this.fighter1.getName()}"`);
+                console.log(`>> ${this.fighter2.getName()}says: "${this.fighter2.getTagline()}"`);
+                fighter1Hp -= damage;
+                console.log(`>> Fighter atacador "${this.fighter2.getName()}" queda ${fighter2Hp} hp`);
+                console.log(`>> Fighter defensor "${this.fighter1.getName()}" queda ${fighter1Hp} hp`);
+            }
+            if(fighter1Hp < 0) {
+                console.log(`\n>> "${this.fighter2.getName()}" gana la batalla!! ${this.fighter1.getName()} back to own universe.`);
                 
-        //     if(round % 2 != 0) {
-        //         damage = this.pokemonGame(this.pokemon1.getType(), this.pokemon2.getType(), this.pokemon1.getAttack(), this.pokemon2.getDefense());
-        //         console.log(`>> Pokemon "${this.pokemon1.getName()}" ha realizado daño ` + damage + ` a "${this.pokemon2.getName()}"`);
-        //         pokemon2Hp -= damage;
-        //         console.log(`>> Pokemon atacador "${this.pokemon1.getName()}" queda ${pokemon1Hp} hp`);
-        //         console.log(`>> Pokemon defensor "${this.pokemon2.getName()}" queda ${pokemon2Hp} hp`);
-        //     }else{
-        //         damage = this.pokemonGame(this.pokemon2.getType(), this.pokemon1.getType(), this.pokemon2.getAttack(), this.pokemon1.getDefense());
-        //         console.log(`>> Pokemon "${this.pokemon2.getName()}" ha realizado daño ` + damage + ` a "${this.pokemon1.getName()}"`);
-        //         pokemon1Hp -= damage;
-        //         console.log(`>> Pokemon atacador "${this.pokemon2.getName()}" queda ${pokemon2Hp} hp`);
-        //         console.log(`>> Pokemon defensor "${this.pokemon1.getName()}" queda ${pokemon1Hp} hp`);
-        //     }
-        //     if(pokemon1Hp < 0) {
-        //         console.log(`\n>> Ganaste la batalla!! Puedes contener ${this.pokemon2.getName()} usando Poké Ball.`);
-        //         return this.pokemon1.getName();
-        //     }else if(pokemon2Hp < 0){
-        //         console.log(`\n>> Perdiste el combate, tu pokemon ${this.pokemon1.getName()} vuelve a su Poké Ball.`);
-        //         return this.pokemon2.getName();
-        //     }else {
-        //         round++;
-        //     }
-        // }
+                process.stdout.write(`\n${this.fighter1.getName()}: `);
+                
+                let printHp2:number = fighter2Hp / this.fighter2.getHP() * 10;
+                process.stdout.write(`\n${this.fighter2.getName()}: `);
+                for(let i = 0; i < printHp2; i++) {
+                    process.stdout.write(`🟩`);
+                }
+                process.stdout.write(`   ${fighter2Hp}`);
+
+                return this.fighter2.getName();
+
+            }else if(fighter2Hp < 0){
+                console.log(`\n>> "${this.fighter1.getName()}" gana la batalla!! "${this.fighter2.getName()}" back to own universe.`);
+                               process.stdout.write(`\n${this.fighter1.getName()}: `);
+                
+                let printHp1:number = fighter1Hp / this.fighter1.getHP() * 10;
+                process.stdout.write(`\n${this.fighter2.getName()}: `);
+                for(let i = 0; i < printHp1; i++) {
+                    process.stdout.write(`🟩`);
+                }
+                process.stdout.write(`   ${fighter1Hp}`);
+
+                return this.fighter1.getName();
+            }else {
+                round++;
+            }
+        }
     }
 }
-
-let pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", 45, 80, 50, "Pikapi.");
-let yoda:StarWars = new StarWars("yoda", 66, 47, "aliens", 90, 80, 110, "A Jedi craves not these things");
-let Colletion:Pokedex = new Pokedex([pikachu, yoda]);
-let b = new showInforFighter(Colletion);
-let a = new Combat(pikachu, yoda);
-a.start();
-// b.showInfo();
-console.table(Colletion.getFighter(), ["name", "height", "weight", "type", "hp", "attack", "defense", "tagline"]);

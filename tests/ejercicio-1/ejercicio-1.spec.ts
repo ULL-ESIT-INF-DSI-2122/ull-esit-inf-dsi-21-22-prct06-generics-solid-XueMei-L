@@ -7,7 +7,7 @@ import { DcComics } from '../../src/ejercicio-1/dccomics';
 import { StarWars } from '../../src/ejercicio-1/starwars';
 import { DragonBall } from '../../src/ejercicio-1/dragonball';
 import { showInfoFighter } from '../../src/ejercicio-1/print'
-// import { Combat } from '../../src/ejercicio-1/combat';
+import { Combat } from '../../src/ejercicio-1/combat';
 
 
 
@@ -48,6 +48,7 @@ describe('Tests for POKEMON GAME', () => {
     wonderWoman, batMan, kingShark, darthVader, lukeSkywalker, yoda, sonGoKu, piccolo]);
 
     let showColletion = new showInfoFighter(finallyColletion);
+
     describe('Tests for POKEMON GAME', () => {
 
         // Tests for class ---------------------------------------------------------------------
@@ -146,5 +147,175 @@ describe('Tests for POKEMON GAME', () => {
         it('Tests for different fighters', () => {
             expect(showColletion.showInfo()).not.be.null;
         });
+    });
+
+    let combat1 = new Combat(pikachu, pikachu);
+    let combat2 = new Combat(pikachu, blastoise);
+    let combat3 = new Combat(pikachu, charizard);
+    let combat4 = new Combat(pikachu, bulbasaur);
+
+    let combat5 = new Combat(charizard, bulbasaur);
+    let combat6 = new Combat(charizard, blastoise);
+
+    let combat7 = new Combat(blastoise, charizard);
+    let combat8 = new Combat(blastoise, bulbasaur);
+
+    let combat9 = new Combat(bulbasaur, charizard);
+    let combat10 = new Combat(bulbasaur, pikachu);
+    let combat11 = new Combat(bulbasaur, blastoise);
+
+    describe('Tests to show combat', () => {
+        it('pikachu vs pikachu', () => {
+            expect(combat1.start()).to.eq("pikachu");
+        });
+
+        it('pikachu vs blastoise', () => {
+            expect(combat2.start()).to.eq("pikachu");
+        });
+
+        it('pikachu vs charizard', () => {
+            expect(combat3.start()).to.eq("charizard");
+        });
+
+        it('pikachu vs bulbasaur', () => {
+            expect(combat4.start()).to.eq("pikachu");
+        });
+
+        it('charizard vs bulbasaur', () => {
+            expect(combat5.start()).to.eq("charizard");
+        });
+
+        it('charizard vs blastoise', () => {
+            expect(combat6.start()).to.eq("charizard");
+        });
+
+        it('blastoise vs charizard', () => {
+            expect(combat7.start()).to.eq("blastoise");
+        });
+        
+        it('blastoise vs bulbasaur', () => {
+            expect(combat8.start()).to.eq("blastoise");
+        });
+        
+        it('bulbasaur vs charizard', () => {
+            expect(combat9.start()).to.eq("charizard");
+        });
+
+        it('bulbasaur vs pikachu', () => {
+            expect(combat10.start()).to.eq("bulbasaur");
+        });
+
+        it('bulbasaur vs blastoise', () => {
+            expect(combat11.start()).to.eq("blastoise");
+        });
+
+
+        let combat21 = new Combat(ironMan, batMan);
+        let combat22 = new Combat(darthVader, sonGoKu);
+        let combat23 = new Combat(piccolo, kingShark);
+        let combat24 = new Combat(wonderWoman, captainAmerica);
+        
+        let combat20 = new Combat(pikachu, yoda);
+        let combat25 = new Combat(pikachu, captainAmerica);
+        let combat26 = new Combat(pikachu, wonderWoman);
+        let combat27 = new Combat(pikachu, sonGoKu);
+        
+        let combat28 = new Combat(sonGoKu, captainAmerica);
+        let combat29= new Combat(wonderWoman, captainAmerica);
+        let combat30= new Combat(wonderWoman, piccolo);
+        let combat31 = new Combat(captainAmerica, captainAmerica);
+        let combat32 = new Combat(hulk, lukeSkywalker);
+
+        let combat33 = new Combat(batMan, sonGoKu);
+        let combat34 = new Combat(wonderWoman, batMan);
+        let combat35 = new Combat(ironMan, darthVader);
+
+        let combat36 = new Combat(lukeSkywalker, batMan);
+        let combat37 = new Combat(lukeSkywalker, darthVader);
+
+        it('pikachu vs yoda', () => {
+            expect(combat20.start()).to.eq("yoda");
+        });
+
+        it('ironMan vs batMan', () => {
+            expect(combat21.start()).to.eq("iron man");
+        });
+
+        it('darthVader vs sonGoKu', () => {
+            expect(combat22.start()).to.eq("darth varder");
+        });
+
+        it('piccolo vs kingShark', () => {
+            expect(combat23.start()).to.eq("piccolo");
+        });
+
+        it('wonderWoman vs captainAmerica', () => {
+            expect(combat24.start()).to.eq("captain america");
+        });
+
+        it('pikachu vs captainAmerica', () => {
+            expect(combat25.start()).to.eq("captain america");
+        });
+
+        it('pikachu vs wonderWoman', () => {
+            expect(combat26.start()).to.eq("wonder woman");
+        });
+        
+        it('pikachu vs sonGoKu', () => {
+            expect(combat27.start()).to.eq("son go ku");
+        });
+        
+        it('sonGoKu vs captainAmerica', () => {
+            expect(combat28.start()).to.eq("son go ku");
+        });
+        
+        it('wonderWoman vs captainAmerica', () => {
+            expect(combat29.start()).to.eq("captain america");
+        });
+        
+        it('wonderWoman vs piccolo', () => {
+            expect(combat30.start()).to.eq("piccolo");
+        });
+        
+        it('captainAmerica vs captainAmerica', () => {
+            expect(combat31.start()).to.eq("captain america");
+        });
+        
+        it('hulk vs lukeSkywalker', () => {
+            expect(combat32.start()).to.eq("hulk");
+        });
+
+        it('lukeSkywalker vs batMan', () => {
+            expect(combat36.start()).to.eq("bat man");
+        });
+
+        it('lukeSkywalker vs darthVader', () => {
+            expect(combat37.start()).to.eq("darth varder");
+        });
+
+        it('batMan vs sonGoKu', () => {
+            expect(combat33.start()).to.eq("son go ku");
+        });
+
+        it('wonderWoman vs batMan', () => {
+            expect(combat34.start()).to.eq("wonder woman");
+        });
+
+        it('ironMan vs darthVader', () => {
+            expect(combat35.start()).to.eq("iron man");
+        });
+
+        it('check while', () => {
+            expect(combat35.start()).to.eq("iron man");
+        });
+        const pikachu2:Pokemon = new Pokemon("pikachu", 60, 50, "electric", -10, 80, 50, "Pikapi.");
+        const pikachu3:Pokemon = new Pokemon("pikachu", 60, 50, "electric", -10, 80, 50, "Pikapi.");
+    
+        let combatError = new Combat(pikachu2,pikachu3);
+
+        it('check while', () => {
+            expect(combatError.start()).not.be.null;
+        });
+        
     });
 });

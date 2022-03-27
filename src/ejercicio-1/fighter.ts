@@ -1,4 +1,6 @@
-
+/**
+ * _abstract class Fighteer_
+ */
 export abstract class Fighter{
     
     protected status = {
@@ -8,13 +10,15 @@ export abstract class Fighter{
     }   
 
     /**
-     * _Constructor de la clase Pokedex_
-     * @param name nombre de fighter
-     * @param weight peso de fighter
-     * @param height altura de fighter
-     * @param type tipo de fighter
-     * @param status hp, attack, defence
-     * @param sentence catching phrase of fighter
+     * _Constructor of fighter_
+     * @param name fighter name
+     * @param height fighter's height
+     * @param weight fighter's weight
+     * @param type fighter's type
+     * @param hp fighter's hp
+     * @param attack fighter's attack
+     * @param defense fighter's defense
+     * @param tagline fighter's tagline
      */
     constructor(private readonly name:string, private readonly height:number,
         private readonly weight:number, private readonly type:string, 
@@ -30,13 +34,44 @@ export abstract class Fighter{
             this.tagline = tagline;
     }
 
+    /**
+     * _Get fighter's name_
+     */
     getName() { return this.name; }
+
+    /**
+     * _Get fighter's height_
+     */
     getHeight() { return this.height; }
+    
+    /**
+     * _Get fighter's weight_
+     */
     getWeight() { return this.weight; }
+
+    /**
+     * _Get fighter's type_
+     */
     getType() { return this.type; }
+
+    /**
+     * _Get fighter's hp_
+     */
     getHP() { return this.hp; }
+
+    /**
+     * _Get fighter's attack_
+     */
     getAttack() { return this.attack; }
+
+    /**
+     * _Get fighter's defense_
+     */
     getDefense() { return this.defense; }
+    
+    /**
+     * _Get fighter's tagline_
+     */
     getTagline() { return this.tagline; }
     
     /**
