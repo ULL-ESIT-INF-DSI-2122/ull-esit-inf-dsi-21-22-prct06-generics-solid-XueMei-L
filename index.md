@@ -1,4 +1,4 @@
-# Práctica 5 - Objetos, clases e interfaces
+# Práctica 6 - Clases e interfaces genéricas. Principios SOLID
 
 ```
 Autor: XueMei Lin
@@ -10,501 +10,644 @@ Lenguaje de programción: TypeScipt
 ```
 
 ## 1. Introducción
-El objeto en TypeScript nos permite definir tipos de datos personalizados con la composición de nuestra elección. Y El uso de las clases también es muy importante en TypeScript, ya que una clase es como una estructura predefinida que sirve como molde para crear Objetos.
+Como hemos mencionado antes, vamos a utilizar los principios de SOLID para profundizarnos el contenido sobre el lenguaje Typescript. Mediante los ejercicios, vamos a aprender más sobre:
+
+1. Interfaces genéricas
+2. Clases 
+
 
 ## 2. Objetivos
 El objetivo de la practica 5, vamos a aprender como crear clases, y cómo a partir de una clases cómo crear un objeto de la clase. Además, en las clases vamos a crear atributos y métodos, con el fin de realizar una serie de ejercicios de programación que nos permitirán conocer más en profundidad los objetos, clases e interfaces del lenguaje TypeScript.
 
 ## 3. Ejercicios propuestas
 
-### 3.1. Ejercicio 1 - Tablas de multiplicar
+### 3.1. Ejercicio 1 - El combate definitivo
+1. La clase abstracta Figter (Para aplicar los principios)
+2. Las subclases *Marvel*, *Pokemon*, *DcComics*, *DragonBall*, *StarWars* son heredas a la clase abstracta.
+3. La clase *combat* realiza el proceso de combate entre dos fighters
+4. La clase *pokedex* es una clase para guardar la colection de figheter
 
-
-Este ejercicio consiste en crear dos clases, por un lado la clase de Pokémon `Class pokedex`, donde guarda la información de los contrincantes.
-- Nombre del Pokemon
-- Peso 
-- Altura
-- Tipo
-- Estadísticas básicas: ataque, defensa, velocidad, daño máximo (HP).  
-
-La información de cada pokemon puede encontrar [aquí](https://pokemondb.net/pokedex/all).
-
-***Clase Pokedex***
-
+**Clase abstracta Figter**
 ```
-export class Pokedex {
-    private name:string;
-    private weight:number;
-    private height:number;
-    private type:string;
-    private info = Array(4);
+/**
+ * _abstract class Fighteer_
+ */
+export abstract class Fighter{
+    
+    protected status = {
+        hp: 0,
+        attack: 0,
+        defence: 0,
+    }   
 
     /**
-     * _Constructor de la clase Pokedex_
-     * @param name nombre de pokemon
-     * @param weight peso de pokemon
-     * @param height altura de pokemon
-     * @param type tipo de pokemon
-     * @param info informacion que contiene ataque, defensa, velocidad, HP de pokemon
+     * _Constructor of fighter_
+     * @param name fighter name
+     * @param height fighter's height
+     * @param weight fighter's weight
+     * @param type fighter's type
+     * @param hp fighter's hp
+     * @param attack fighter's attack
+     * @param defense fighter's defense
+     * @param tagline fighter's tagline
      */
-    constructor(name:string, weight:number, height:number, 
-        type:string, info:number[]) {
+    constructor(private readonly name:string, private readonly height:number,
+        private readonly weight:number, private readonly type:string, 
+        private hp:number, private readonly attack:number, 
+        private readonly defense:number, private readonly tagline:string) {
             this.name = name;
-            this.weight = weight;
             this.height = height;
+            this.weight = weight;
             this.type = type;
-            this.info = info;
-        }
-
-    //getters para devuelver las variables
-    getName() { return this.name; }
-    getWeight() { return this.weight; }
-    getHeight() { return this.height; }
-    getType() { return this.type; }
-    getAttack() { return this.info[0]; }
-    getDefense() { return this.info[1]; }
-    getSpeed() { return this.info[2]; }
-    getHP() { return this.info[3]; }
-
-    setHp(Hp:number){ this.info[3] = Hp; }
-
-    //metodo para mostrar la informacion de pokemon
-    public showPokemon(){
-        console.log(`>> Informacion de ` + this.getName() +
-                  `\n>> Tipo: ` + this.getType() + 
-                  `\n>> Peso: ` + this.getWeight() + 
-                  `\n>> Altura: ` + this.getHeight() +
-                  `\n>> HP: ` + this.getHP() +
-                  `\n>> Ataque: ` + this.getAttack() +
-                  `\n>> Defensa: ` + this.getDefense() +
-                  `\n>> Velocidad: ` + this.getSpeed()
-        );
+            this.hp = hp;
+            this.attack = attack;
+            this.defense = defense;
+            this.tagline = tagline;
     }
+
+    /**
+     * _Get fighter's name_
+     */
+    getName() { return this.name; }
+
+    /**
+     * _Get fighter's height_
+     */
+    getHeight() { return this.height; }
+    
+    /**
+     * _Get fighter's weight_
+     */
+    getWeight() { return this.weight; }
+
+    /**
+     * _Get fighter's type_
+     */
+    getType() { return this.type; }
+
+    /**
+     * _Get fighter's hp_
+     */
+    getHP() { return this.hp; }
+
+    /**
+     * _Get fighter's attack_
+     */
+    getAttack() { return this.attack; }
+
+    /**
+     * _Get fighter's defense_
+     */
+    getDefense() { return this.defense; }
+    
+    /**
+     * _Get fighter's tagline_
+     */
+    getTagline() { return this.tagline; }
+    
+    /**
+     * _Inserter new hp after combat_
+     * @param Hp vida de cada fighter
+     */
+    public setHp(fighterHP:number) { this.status.hp = fighterHP; }
+
+    /**
+     * _Method that every fighter has different universe_
+     */
+    abstract getUniverse():string;
+
+}
 ```
 
-
-Por otro lado la clase de `Combat` donde realiza la batalla entre dos contrincantes. 
-
-Más concretamente, en la clase `Combathe creado constructor` `PokemonGame()` donde compara el daño que realiza cada pokemon y un metodo `start()` que realiza el proceso de batalla.
-
-En la funcion `pokemonGame` tiene parametros `pokemon1` `pokemn2` `daño de pokemon1` `depensa de pokemon2`. Dependiendo de los tipos de pokemon, el metodo calcula el daño realizado de `pokemo1` a `pokemon2`.
-
-***Clase Combat***
-
-***Metodo pokemonGame()***
+**Una de las subclases**
 ```
-private pokemonGame(pokemon_attacker:string, pokemon_defender:string, attack:number, defense:number):number{
+import { Fighter } from './fighter'
+
+/**
+ * _Subclass DcComics_
+ */
+export class DcComics extends Fighter {
+
+    private readonly universe:string = "DcComics";
+
+    /**
+     * _Constructor of fighter_
+     * @param name fighter name
+     * @param height fighter's height
+     * @param weight fighter's weight
+     * @param type fighter's type
+     * @param hp fighter's hp
+     * @param attack fighter's attack
+     * @param defense fighter's defense
+     * @param tagline fighter's tagline
+     */
+    constructor(name:string, height:number, weight:number, type:string, 
+        hp:number, attack:number, defense:number, sentence:string) {
+        super(name, height, weight, type, hp, attack, defense, sentence);
+    }
+
+    /**
+     * _Method that to get fighter's universe_
+     */
+    getUniverse():string {
+        return this.universe;
+    }
+}
+```
+
+**Clase combat**
+Donde realiza el combate entre dos fighters
+```
+import { Fighter } from "./fighter";
+import { Pokemon } from "./pokemon";
+import { Marvel } from "./marvel";
+import { DcComics } from "./dccomics";
+import { StarWars } from "./starwars";
+import { DragonBall } from "./dragonball";
+
+/**
+ * _Class Combat_
+ */
+export class Combat {
+    private fighter1:Fighter;
+    private fighter2:Fighter;
+
+    /**
+     *  _Construtor of the class Combat_
+     * @param fighter1 fighter1 (from one of 5 universes.)
+     * @param fighter2 fighter2 (from one of 5 universes.)
+     */
+    constructor(fighter1:Fighter, fighter2:Fighter) {
+        this.fighter1 = fighter1;
+        this.fighter2 = fighter2;
+    }
+
+    /**
+     * _Calcular el ataque de Fighter A hacia Fighter B_
+     * @param fighter1 tipo de Fighter atacator
+     * @param fighter2 tipo de Fighter defensor
+     * @returns daño realizado por el defensor
+     */
+    private SepWorldWarGame(fighter1:Fighter, fighter2:Fighter):number{
         let efectiveness: number = 0;
         let damage_total: number = 0;
 
-        if(pokemon_attacker == pokemon_defender){
-            efectiveness = 0.5;
-        }else{
-            switch(pokemon_attacker){
-                case "fire":
-                    if(pokemon_defender == "grass"){
-                        efectiveness = 2;
-                    }else if(pokemon_defender == "water"){
+        switch(fighter1.getUniverse()) {
+
+            // DragonBall > Marvel > DcComics > Fighter > StarWars 
+
+            case 'Pokemon':
+                if(fighter2 instanceof Pokemon) {
+                    if(fighter1.getType() == fighter2.getType()){
                         efectiveness = 0.5;
                     }else{
-                        efectiveness = 1;
+                        switch(fighter1.getType()){
+
+                            case "fire":
+                                if(fighter2.getType() == "grass"){
+                                    efectiveness = 2;
+                                }else if(fighter2.getType() == "water"){
+                                    efectiveness = 0.5;
+                                }else{
+                                    efectiveness = 1;
+                                }
+                            break;
+
+                            case "water":
+                                if(fighter2.getType() == "fire"){
+                                    efectiveness = 0.5;
+                                }
+                                if(fighter2.getType() == "grass" || fighter2.getType() == "electric"){
+                                    efectiveness = 2;
+                                }
+                            break;
+
+                            case "grass":
+                                if(fighter2.getType() == "fire"){
+                                    efectiveness = 0.5;
+                                }else if(fighter2.getType() == "electric"){
+                                    efectiveness = 1;
+                                }else{
+                                    efectiveness = 2;
+                                }
+                            break;
+
+                            case "electric":
+                                if(fighter2.getType() == "fire" || fighter2.getType() == "grass"){
+                                    efectiveness = 1;
+                                }else{
+                                    efectiveness = 2;
+                                }
+                            break;
+                        }
                     }
-                case "water":
-                    if(pokemon_defender == "fire"){
-                        efectiveness = 0.5;
-                    }
-                    if(pokemon_defender == "grass" || pokemon_defender == "electric"){
-                        efectiveness = 2;
-                    }
-                case "grass":
-                    if(pokemon_defender == "fire"){
-                        efectiveness = 0.5;
-                    }else if(pokemon_defender == "electric"){
-                        efectiveness = 1;
-                    }else{
-                        efectiveness = 2;
-                    }
-                case "electric":
-                    if(pokemon_defender == "fire" || pokemon_defender == "grass"){
-                        efectiveness = 1;
-                    }else{
-                        efectiveness = 2;
-                    }
-            }
+                }    
+            
+                if(fighter2 instanceof Marvel) { efectiveness = 0.5; }
+                if(fighter2 instanceof DcComics) { efectiveness = 0.5; }
+                if(fighter2 instanceof StarWars) { efectiveness = 2; }
+                if(fighter2 instanceof DragonBall) { efectiveness = 0.5; }
+
+            case 'DragonBall':
+                if(fighter2 instanceof Pokemon) { efectiveness = 2; }
+                if(fighter2 instanceof Marvel) { efectiveness = 2; }
+                if(fighter2 instanceof DcComics) { efectiveness = 2; }
+                if(fighter2 instanceof StarWars) { efectiveness = 0.5; }
+                if(fighter2 instanceof DragonBall) { efectiveness = 1; }
+            break;
+
+            case 'Marvel':
+                if(fighter2 instanceof Pokemon) { efectiveness = 2; }
+                if(fighter2 instanceof Marvel) { efectiveness = 1; }
+                if(fighter2 instanceof DcComics) { efectiveness = 1; }
+                if(fighter2 instanceof StarWars) { efectiveness = 2; }
+                if(fighter2 instanceof DragonBall) { efectiveness = 0.5; }
+            break;
+
+            case 'DcComics':
+                if(fighter2 instanceof Pokemon) { efectiveness = 2; }
+                if(fighter2 instanceof Marvel) { efectiveness = 0.5; }
+                if(fighter2 instanceof DcComics) { efectiveness = 1; }
+                if(fighter2 instanceof StarWars) { efectiveness = 2; }
+                if(fighter2 instanceof DragonBall) { efectiveness = 0.5; }
+            break;
+
+            case 'StarWars':
+                if(fighter2 instanceof Pokemon) { efectiveness = 0.5; }
+                if(fighter2 instanceof Marvel) { efectiveness = 0.5; }
+                if(fighter2 instanceof DcComics) { efectiveness = 0.5; }
+                if(fighter2 instanceof StarWars) { efectiveness = 1; }
+                if(fighter2 instanceof DragonBall) { efectiveness = 2; }
+            break;
         }
-        
-        damage_total = 50 * ( attack / defense ) * efectiveness;
-        
-        return parseFloat(damage_total.toFixed(0));
+
+        damage_total = 50 * ( fighter1.getAttack() / fighter2.getDefense() ) * efectiveness;
+        return Math.trunc(damage_total);
     }
-```
 
-y por otro lado el código de `start()`, el combate empieza la batalla entre dos pokemon, Tras varias rondas, si la vida de uno de ellos es negativo o 0, el ganador es el otro pokemon.
-
-***Metodo start()***
-```
-public start():string {
-        console.log(`----------------------------Pokemon Game Start----------------------------\n`);
-        console.log(`Historia temporal: 
-        Después de salir el bosque negro, tú con tú pokemon "${this.pokemon1.getName()}" estáis yendo 
-        al camino No.1 para encontrar tu compañero, en este momento salio un nuevo pokemon 
-        "${this.pokemon2.getName()}"`);
-
-        console.log(`\n-------- Tu pokemon: --------`);
-        this.pokemon1.showPokemon();
-
-        console.log(`\n-------- Pokemon enemigo: --------`);
-        this.pokemon2.showPokemon();
+    /**
+     * _Metodo que realiza el proceso de combate_
+     * @returns devuelve el ganador
+     */
+    public start() {
+        console.log(`----------------------------Battle of the Exotic ----------------------------\n`);
+        console.log(`Temporal history:    
+            With the evolution of science and technology, human beings have started the exploration of the universe. 
+            While roaming the universe, they have discovered many colorful universes:
+            [ Fighter universe, Marvel universe, Dccomics universe, Starswar universe, Dragonball universe ...]
+            This opens the door to a new universe, Human beings on Earth have created a platform for each universe to 
+            experience the battle with different universes, giving everyone a brand new battle experience, 
+            experience different universes, battles between different races, strengths, skills, mutations... 
+            Countless different and The existence of other universes, who will eventually become the strongest universe!
+        `);
         
-        console.log(`\n----------------------------Proceso de combate----------------------------\n`);
+        console.log(`\n>> Welcome to " ${this.fighter1.getName()} " from the < ${this.fighter1.getUniverse()} univese > `);
+        console.log(`>> And his opponent " ${this.fighter2.getName()} " from the < ${this.fighter2.getUniverse()} univese >`);
+        
+        console.log(`\n---------------------------Combat process----------------------------`);
 
-        let pokemon1Hp:number = this.pokemon1.getHP();
-        let pokemon2Hp:number = this.pokemon2.getHP();
+        let fighter1Hp:number = this.fighter1.getHP();
+        let fighter2Hp:number = this.fighter2.getHP();
         let round:number = 1;
         
-        while (pokemon1Hp > 0 || pokemon2Hp > 0) {
+        while (fighter1Hp > 0 || fighter2Hp > 0) {
             let damage:number = 0;
             console.log(`\n>> Round: ${round}`);
-                
-            if(round % 2 != 0) {
-                damage = this.pokemonGame(this.pokemon1.getType(), this.pokemon2.getType(), this.pokemon1.getAttack(), this.pokemon2.getDefense());
-                console.log(`>> Pokemon "${this.pokemon1.getName()}" ha realizado daño ` + damage + ` a "${this.pokemon2.getName()}"`);
-                pokemon2Hp -= damage;
-                console.log(`>> Pokemon atacador "${this.pokemon1.getName()}" queda ${pokemon1Hp} hp`);
-                console.log(`>> Pokemon defensor "${this.pokemon2.getName()}" queda ${pokemon2Hp} hp`);
-            }else{
-                damage = this.pokemonGame(this.pokemon2.getType(), this.pokemon1.getType(), this.pokemon2.getAttack(), this.pokemon1.getDefense());
-                console.log(`>> Pokemon "${this.pokemon2.getName()}" ha realizado daño ` + damage + ` a "${this.pokemon1.getName()}"`);
-                pokemon1Hp -= damage;
-                console.log(`>> Pokemon atacador "${this.pokemon2.getName()}" queda ${pokemon2Hp} hp`);
-                console.log(`>> Pokemon defensor "${this.pokemon1.getName()}" queda ${pokemon1Hp} hp`);
+            let printHp1:number = fighter1Hp / this.fighter1.getHP() * 10;
+            process.stdout.write(`${this.fighter1.getName()}: `);
+            for(let i = 0; i < printHp1; i++) {
+                process.stdout.write(`🟩`);
             }
-            if(pokemon1Hp < 0) {
-                console.log(`\n>> Ganaste la batalla!! Puedes contener ${this.pokemon2.getName()} usando Poké Ball.`);
-                return this.pokemon1.getName();
-            }else if(pokemon2Hp < 0){
-                console.log(`\n>> Perdiste el combate, tu pokemon ${this.pokemon1.getName()} vuelve a su Poké Ball.`);
-                return this.pokemon2.getName();
+            process.stdout.write(`   ${fighter1Hp}`);
+
+            let printHp2:number = fighter2Hp / this.fighter2.getHP() * 10;
+            process.stdout.write(`\n${this.fighter2.getName()}: `);
+            for(let i = 0; i < printHp2; i++) {
+                process.stdout.write(`🟩`);
+            }
+            process.stdout.write(`   ${fighter2Hp}`);
+
+            if(round % 2 != 0) {
+                damage = this.SepWorldWarGame(this.fighter1, this.fighter2);
+                console.log(`\n>> Fighter "${this.fighter1.getName()}" ha ralizado daño ` + damage + ` a "${this.fighter2.getName()}"`);
+                console.log(`>> ${this.fighter1.getName()}says: "${this.fighter1.getTagline()}"`);
+                fighter2Hp -= damage;
+                console.log(`>> Fighter atacador "${this.fighter1.getName()}" queda ${fighter1Hp} hp`);
+                console.log(`>> Fighter defensor "${this.fighter2.getName()}" queda ${fighter2Hp} hp`);
+            }else{
+                damage = this.SepWorldWarGame(this.fighter2, this.fighter1);
+                console.log(`\n>> Fighter "${this.fighter2.getName()}" ha realizado daño ` + damage + ` a "${this.fighter1.getName()}"`);
+                console.log(`>> ${this.fighter2.getName()}says: "${this.fighter2.getTagline()}"`);
+                fighter1Hp -= damage;
+                console.log(`>> Fighter atacador "${this.fighter2.getName()}" queda ${fighter2Hp} hp`);
+                console.log(`>> Fighter defensor "${this.fighter1.getName()}" queda ${fighter1Hp} hp`);
+            }
+            if(fighter1Hp < 0) {
+                console.log(`\n>> "${this.fighter2.getName()}" gana la batalla!! ${this.fighter1.getName()} back to own universe.`);
+                
+                process.stdout.write(`\n${this.fighter1.getName()}: `);
+                
+                let printHp2:number = fighter2Hp / this.fighter2.getHP() * 10;
+                process.stdout.write(`\n${this.fighter2.getName()}: `);
+                for(let i = 0; i < printHp2; i++) {
+                    process.stdout.write(`🟩`);
+                }
+                process.stdout.write(`   ${fighter2Hp}`);
+
+                return this.fighter2.getName();
+
+            }else if(fighter2Hp < 0){
+                console.log(`\n>> "${this.fighter1.getName()}" gana la batalla!! "${this.fighter2.getName()}" back to own universe.`);
+                               process.stdout.write(`\n${this.fighter1.getName()}: `);
+                
+                let printHp1:number = fighter1Hp / this.fighter1.getHP() * 10;
+                process.stdout.write(`\n${this.fighter2.getName()}: `);
+                for(let i = 0; i < printHp1; i++) {
+                    process.stdout.write(`🟩`);
+                }
+                process.stdout.write(`   ${fighter1Hp}`);
+
+                return this.fighter1.getName();
             }else {
                 round++;
             }
         }
-        return this.pokemon1.getName();
-    }
-```
-
-
-### 3.1. Ejercicio 2 - Conecta 4
-
-El juego conect4 consiste en crear una rejilla de 6 filas y 7 columnas, dos jugadores se turnan para ir colocando un conjunto de fichas dejándolas caer por alguna de las siete columnas de la rejilla. Cada jugador dispone de un total de 21 fichas de un color diferente.
-
-En cada turno, una ficha tomará la primera posición libre de la columna seleccionada por el jugador que corresponda. Si la columna está completa, esto es, ya cuenta con seis fichas, dicha columna no podrá ser seleccionada por ninguno de los dos jugadores para dejar caer otra ficha.
-
-En la implementacion del juego. He creado 3 clases:
-    **- class Grid**
-    **- class Player**
-    **- class connect4**
-
-
-***Clase Grid***
-```
-export class Grid {
-
-    private rows:number = 6;
-    private cols:number = 7;
-    private grid:number[][] = [];
-    private saveLastPos = Array(7);
-    private countRound:number = 0;
-    private ValueI:number = 0;
-
-    constructor() {
-        for(let i: number = 0; i < this.rows; i++) {
-            this.grid[i] = [];
-            for(let j: number = 0; j < this.cols; j++) {
-                this.grid[i].push(0);
-            }
-        }
-    }
-    
-    public getCols() { return this.cols; }
-    public getRows() { return this.rows; }
-    public getValueI() { return this.ValueI; }
-    public getGrid() { return this.grid; }
-
-    public showGrid() {
-        console.log(`>> Mostrar Regilla`)
-        for(var i: number = 0; i < this.rows; i++) {
-            console.log(`${this.grid[i]}`);
-        }
-    }
-
-    public isValid(colums:number) :boolean {
-        if(this.grid[0][colums] == 0) {
-            return true;
-        }else{
-            console.log(`Error, ${colums} está completa`);
-            return false;
-        }
-    }
-
-    public setPosAndGetI(colums:number):number{
-        this.countRound++;
-            
-        //Obtener la i posicion que inserta el jugador
-        const getLastPosI = this.getLastPositionOfColumns(colums);
-        console.log(`la ultima = ${getLastPosI}`);
-        this.ValueI = getLastPosI;
-        // impar toca el jugador 1 - par toca el jugador 2
-            if(this.countRound % 2 != 0) {
-                this.grid[getLastPosI][colums] = 1;
-            }else{
-                this.grid[getLastPosI][colums] = 2;
-            }
-
-        //Actualizar la ultima nueva posicion
-        this.saveLastPos[colums] = getLastPosI;
-        // console.log(`la ultima = ${getLastPosI}`);
-        return this.ValueI;
-    }
-
-    private getLastPositionOfColumns(colums:number):number {
-        if(this.saveLastPos[colums] == null) {
-            return 5;
-        }else{
-            return this.saveLastPos[colums]-1;
-        }
     }
 }
 ```
-En primer lugar, inicializamos el constructor a una regilla de 6 * 7 a todos 0. Tiene un metodo `showGrid()` para mostrar la regilla. 
-El metodo `isValid()` tiene un parametro que esl numero de columna que inserta el jugador, dicho metodo comproba que si la columna es valida, si es valida, guarda la ultima posicion de la columna o devuelve un valor que es la posicion de fila cuando si es valida la columna. 
-Y el metodo `getLastPositionOfColumns` simplemente devuelve la ultima posicion de cada columna (cada position está guardada en una array). 
 
-***Clase Player***
+### 3.2. Ejercicio 2 - DSIflix
+
+En este ejercicio consiste en implementar una interfaz genérica llamado `Streamable` y una clase abstracta `BasicStreamableCollection` y otras clases abstractas que vamos a ver en lo siguiente:
+
+**Clase abstracta sobre BasicStreamableCollection**
+
+1. Definir constructor
+2. Devolver la longitud de la colección
+3. Definir el método de búsqueda general
+4. Definir el método de imprimir resultado
+
 ```
-export class Player {
-    private name:string;
-    private numFichas:number = 21;
+import { StreamableSeach } from "./StreamableSeach";
+import { Streamable } from './Streamable'
 
-    constructor(name:string) {
-        this.name = name;
-    }
-
-    getName() { return this.name; }
-    getNumFichas() { return this.numFichas; }
-
-    setNumFichas(numFichas:number) { this.numFichas = numFichas}
-
-}
-```
-La `class player` es muy sensilla, puesto que el constructor solo recibe el nombre de jugador, y tiene **getters()** para mirar numero de fichas y el nombre de jugador. y `setNumFichas()` sirve para actualizar el numero de fichas despues de cada ronda.
-
-***Clase Connect4***
-```
-export class GameConect4 {
-
-    private player1:Player;
-    private player2:Player;
-    private grid:Grid;
-
-    constructor(jugador1:Player, jugador2:Player, regilla:Grid) {
-        this.player1 = jugador1;
-        this.player2 = jugador2;
-        this.grid = regilla;
-    }
+/**
+ * Abstract class BasicStreamableCollection to include all Streamables
+ */
+export abstract class BasicStreamableCollection<T> implements StreamableSeach<T>, Streamable<T> {
     
-    public gamePlayConect4() {
-        // Game start
-        console.log(`---------------------------------Bienvenido al juego Conecta 4-----------------------------`); 
+    /**
+     * _Constructor of the abstract class_
+     * @param collection Array to save objects of type T
+     */
+    constructor(protected collection:T[]) {}
+
+    /**
+     * _Method that to add a object type T to the collection_
+     * @param element elemento type T to add to the collection
+     */
+    addElement(element:T) { this.collection.push(element); }
     
-        this.grid.showGrid();
-        console.log(`\n>> Empieza el jugador "${this.player1.getName()}"`);
-        let round:number = 1;
-        let winnerPlayerA:boolean = false;
-        let winnerPlayerB:boolean = false;
-        var scanf = require('scanf');
 
-        // while(winnerPlayerA == false && winnerPlayerB == false) {
-        while(winnerPlayerA == false && winnerPlayerB == false && this.player1.getNumFichas() > 0 && this.player2.getNumFichas() > 0 ) {
+    // Methods that should be implement in subclases;
 
-            console.log(`>> Rounda [${round}] ----------------------------------------------------------\n`);
-            
-            if(round % 2 != 0) {
-                console.log(`>> Hola jugador ${this.player1.getName()}. \n>> Ahora es su turno, qué columna quieres insertar una ficha?`);
-                
-                //para entrar al bucle while, si la columna no es valido, vuelva a insertar. 
-                let valido:boolean = false;
-                
-                while(valido == false) {
-                    console.log(`>> Indica un numero entre 0-6`);
-                    var colums = scanf('%d');
-                    console.log(`>> Usted ha insertado una ficha en la columna ${colums}.`);
-                    if(this.grid.isValid(colums)) {
-                        console.log(`>> La columna ${colums} es valida`);
-                        console.log(`>> El jugador ${this.player1.getName()} pone una ficha en la columa ${colums}`);
-                        
-                        // Disminuir el numero de fichas
-                        this.player1.setNumFichas(this.player1.getNumFichas()-1);
-                        console.log(`>> El jugador ${this.player1.getName()} queda ${this.player1.getNumFichas()} fichas.`);
-    
-                        //Pasar la poscion actual para analizar
-                        winnerPlayerA = this.gameWinner(this.grid.setPosAndGetI(colums), colums);
-                        valido = true;
-                    }else{
-                        console.log(`>> El jugador debe volver a poner una ficha.`);
-                        valido = false;
-                    }
-                }
-            }else{
-                console.log(`>> Hola jugador ${this.player2.getName()}. \n>> Ahora es su turno, qué columna quieres insertar una ficha?`);
-                
-                //para entrar al bucle while, si la columna no es valido, vuelva a insertar. 
-                let valido:boolean = false;
-
-                while(valido == false) {
-                    console.log(`>> Indica un numero entre 0-6`);
-                    var colums = scanf('%d');
-                    console.log(`>> Usted ha insertado una ficha en la columna ${colums}.`);
-
-                    if(this.grid.isValid(colums)) {
-                        console.log(`>> La columna ${colums} es valida`);
-                        console.log(`>> El jugador ${this.player2.getName()} pone una ficha en la columa ${colums}`);
-                        
-                        // Disminuir el numero de fichas
-                        this.player2.setNumFichas(this.player1.getNumFichas()-1);
-                        console.log(`>> El jugador ${this.player2.getName()} queda ${this.player2.getNumFichas()} fichas.`);
-    
-                        //Pasar la poscion actual para analizar
-                        winnerPlayerB = this.gameWinner(this.grid.setPosAndGetI(colums), colums);
-
-                        valido = true;
-                    }else{
-                        console.log(`>> El jugador debe volver a poner una ficha.`);
-                        valido = false;
-                    }
-                }
-            }
-            // Mostrar regilla cada vez;
-            this.grid.showGrid();
-
-            // Comprobar que haya ganado uno de ellos
-            if(winnerPlayerA == true) {
-                console.log(`${this.player1.getName()} ha ganado el partido.`);
-            }else if(winnerPlayerB == true) {
-                console.log(`${this.player2.getName()} ha ganado el partido.`);
-            }else{
-            }
-            round++;
-        }
-    }
+    /**
+     * _Method that to get element of the colletion_
+     */
+    abstract getElement():T[];
 
 
     /**
-     * _Metodo que comprobar que si la posicion actual se puede en contrar 4 fichas seguidas_
-     * @param posActualI posicion horizontal para analizar que si haya ganado o no
-     * @param posActualJ posicion vertical para analizar que si haya ganado o no
+     * _Method that to seach type T with corresponding information_
+     * @param data information that to seach
+     * @param value value to seach
      */
-    public gameWinner(posActualI:number, posActualJ:number):boolean {
-        let winner:boolean = false;
-        let countToken:number;
+    abstract searchElement(name:string, type:string):T[];
 
-        //hay que hacer 4 bucle for para comprobar
+}
+```
 
-        //horizontal
-        countToken = 0;
-        for(let i:number = 0; i < this.grid.getCols()-1; i++) {
-            if(this.grid.getGrid()[posActualI][i] == 0) {
-                continue;
-            }else if(this.grid.getGrid()[posActualI][posActualJ] == this.grid.getGrid()[posActualI][i]) {
-                if(this.grid.getGrid()[posActualI][i] == this.grid.getGrid()[posActualI][i+1]){
-                    countToken++;
-                    if(countToken==3) {
-                        winner = true;
-                    }
-                }
-            }else{
-                continue;
-            }
-        }
+**Interfaz de Stramable** :
 
-        //vertical
-        countToken = 0;
-        for(let i:number = posActualI; i < this.grid.getRows()-1; i++) {
-            if(this.grid.getGrid()[i][posActualJ] == 0) {
-                continue;
-            }else if(this.grid.getGrid()[posActualI][posActualJ] == this.grid.getGrid()[i][posActualJ]) {
-                if(this.grid.getGrid()[i][posActualJ] == this.grid.getGrid()[i+1][posActualJ]){
-                    countToken++;
-                    if(countToken==3) {
-                        winner = true;
-                    }
-                }
-            }else{
-                continue;
-            }
-        }
+```
+export interface Streamable<T> {
+    getNumber():number;
+    busqueda(tipo: string, nombre:string): T[];
+}
+```
 
+**Realizar la busqueda sobre documentales**
 
-        //diagonal izq
-        countToken = 0;
-        let initCountPosI_izq:number = 0;
-        let initCountPosJ_izq:number = posActualI + posActualJ;
-        
-        // Calcula la posicion diagonal inicial 
-        if(initCountPosJ_izq < this.grid.getRows()) {
-            initCountPosI_izq = 0;
+```
+import {BasicStreamableColletion} from './basicStreamableCollection';
+
+/**
+ * Definir la estructura de documento
+ */
+export type documento = {
+    nombre: string;
+    tipo: string;
+}
+
+/**
+ * Clase Documentales
+ */
+export class Documentales extends BasicStreamableColletion<documento> {
+    constructor(elementos: documento[]){
+        super(elementos);
+    }
+    /**
+     * Realizar la busqueda
+     * @param tipo tipo de busqueda que quiere realizr
+     * @param value el contenido que quiere buscar
+     */
+    busqueda(tipo:string, value:string):any{
+        if(tipo == "nombre"){
+            return this.collecion.filter((n) => (n.nombre == value));
+        }else if(tipo == "tipo"){
+            return this.collecion.filter((n) => (n.tipo == value));
         }else{
-            initCountPosI_izq = initCountPosJ_izq - this.grid.getRows();
-            initCountPosJ_izq = this.grid.getCols()-1;
+            return "No existe la documentacion que desea a buscar";
         }
-        for(let i:number = initCountPosI_izq, j:number = initCountPosJ_izq; i < this.grid.getRows()-1; i++, j--) {
-            if(this.grid.getGrid()[i][j] == 0) {
-                continue;
-            }else if(this.grid.getGrid()[i][j] == this.grid.getGrid()[i+1][j-1]) {
-                countToken++;
-                    if(countToken==3) {
-                        winner = true;
-                    }
-            }else{
-                continue;
-            }
-        }
-        
-
-        //diagonal der
-        countToken = 0;
-        let initCountPosI_der:number = posActualI - Math.min(posActualI, posActualJ);
-        let initCountPosJ_der:number = posActualJ - Math.min(posActualI, posActualJ);
-        for(let i:number = initCountPosI_der, j:number = initCountPosJ_der; i < this.grid.getRows()-1; i++, j++) {
-            if(this.grid.getGrid()[i][j] == 0) {
-                continue;
-            }else if(this.grid.getGrid()[i][j] == this.grid.getGrid()[i+1][j+1]) {
-                countToken++;
-                    if(countToken==3) {
-                        winner = true;
-                    }
-            }else{
-                continue;
-            }
-        }
-        return winner;
+    }
+    /**
+     * Funcion de imprimir el resultado
+     */
+    print(){
+        this.collecion.forEach((tipo, value) => {
+            console.log(`tipo que desea buscar: ${tipo}
+                         nombre concreto que desea a buscar ${value}`);
+        })
     }
 }
 ```
-La `class connect4` tiene un constructor donde recibe dos objetos jugadores y una regilla.
-El `gamePlayConnect4` realiza el proceso del juego. Cuando toca la rounda de uno de los jugadores. Preguntará al jugador qué columna quiere insertar. Después comprueba si es una columa valida usando la funico `isValid()`, en el caso de que si, inserta la posicion `setPosAndGetI()`, y pasa la posicion actual al metodo `gameWinner()`, que tiene 4 bucles para comprobar, que corresponden a `horizontal` `vertical` `diagonal principal` `diagonal secundario`. Una vez que haya comprobado estos 4 bucles, devuelve tipo booleano para indicar que si ha ganado uno de ellos.  
+
+**Realizar la busqueda sobre peliculas**
+
+```
+import {BasicStreamableColletion} from './basicStreamableCollection';
+
+/**
+
+ * Definir la estructura de pelicula
+   */
+   export type pelicula = {
+   nombre: string;
+   tipo: string;
+   year: number;
+   }
+
+/**
+
+ * Clase Peliculas
+   */
+   export class Peliculas extends BasicStreamableColletion<pelicula> {
+   constructor(elementos: pelicula[]){
+       super(elementos);
+   }
+   /**
+    * Realizar la busqueda
+    * @param tipo tipo de busqueda que quiere realizr
+    * @param value el contenido que quiere buscar
+      */
+      busqueda(tipo:string, value:string):any{
+      //switch(tipo.toLocaleUpperCase()){
+          if(tipo == "nombre"){
+              return this.collecion.filter((n) => (n.nombre == value));
+          }else if(tipo == "tipo"){
+              return this.collecion.filter((n) => (n.tipo == value));
+          }else if(tipo == "year"){
+              return this.collecion.filter((n) => n.year = Number(value));
+          }else{
+              return "No existe la pelicula que desea a buscar";
+          }
+      }
+      /**
+    * Funcion de imprimir el resultado
+      */
+      print(){
+      this.collecion.forEach((tipo, value) => {
+          console.log(`tipo que desea buscar: ${tipo}
+                       nombre concreto que desea a buscar ${value}`);
+      })
+    }
+ }
+```
+
+**Realizar la busqueda sobre series**
+
+```
+import {BasicStreamableColletion} from './basicStreamableCollection';
+
+/**
+ * Definir la estructura de Series
+ */
+export type series = {
+    nombre: string;
+    tipo: string;
+    year: number;
+    temporar: number;
+    estrealla: number;
+}
+
+/**
+ * Clase Series
+ */
+export class Series extends BasicStreamableColletion<series> {
+    constructor(elementos: series[]){
+        super(elementos);
+    }
+    /**
+     * Realizar la busqueda
+     * @param tipo tipo de busqueda que quiere realizr
+     * @param value el contenido que quiere buscar
+     */
+    busqueda(tipo:string, value:string):any{
+        if(tipo == "nombre") {
+            return this.collecion.filter((n) => (n.nombre == value));
+        }else if(tipo == "tipo") {
+            return this.collecion.filter((n) => (n.tipo == value));
+        }else if(tipo == "year") {
+            return this.collecion.filter((n) => n.year = Number(value));
+        }else if(tipo == "temporar") {
+            return this.collecion.filter((n) => n.temporar == Number(value));
+        }else if(tipo == "estrella") {
+            return this.collecion.filter((n) => n.estrealla >= Number(value));
+        }else {
+            return "No existe la serie que desea a buscar";
+        }
+    }
+    /**
+     * Funcion de imprimir el resultado
+     */
+    print(){
+        this.collecion.forEach((tipo, value) => {
+            console.log(`tipo que desea buscar: ${tipo}
+                         nombre concreto que desea a buscar ${value}`);
+        })
+    }
+}
+```
+
+### 3.3. Ejercicio 3 - El cifrado indescifrable
 
 
+***Clase CaesarCipher***
 
-## 4. Conclusión
-​Como conclusión, esta práctica nos ayuda a mejorar a el desarrollo de proyecto, puesto que las impelemtaciones de clases nos permiten agrupar los metodos necesarios. Además, TypeScript sí que tiene clases que facilitan la encapsulación de código. Por lo tanto, manejar bien la parte de objeto y clases es muy importante en TypeScript.
+**Metodo cipher**
+```
+cipher(str:string, key:string):string {
+        
+        str = str.toLocaleUpperCase();
+        let cipher = '';
+        for(let i:number = 0, j:number = 0; i < str.length; i++, j++) {
+            // let key repite N times
+            if((i+1) % key.length == 0) {
+                j = 0;
+            }
 
-En esta practica, tambien se utilzia Mocha, Chai, y TypeDoc para mejorar nuestro "proyecto".
-[Mocha](https://mochajs.org/)
-[Chai](https://www.chaijs.com/)
-[TypeDoc](https://typedoc.org/)
+            let newIndex:number = ((this.alphabet.indexOf(str[i])+1) + (this.alphabet.indexOf(key[j])+1));
+            newIndex = newIndex % this.alphabet.length;
+            cipher += this.alphabet[newIndex-1];
+        }
+        return cipher;
+    }
+```
+El metodo `cipher()` recibe dos parametros, y dentro de la funcion va iterando por la posicion, haciendo la suma de cada posicion del mensaje y la posicion de la clave, se obtiene una nueva posicion que es el mensaje cifrado. 
 
-La siguiente es la demostracion de los tests para cada ejercicio.
+**Metodo decipher**
+```
+decipher(str:string, key:string): string {
+        str = str.toLocaleUpperCase();
+        let decipher = "";
+        for(let i:number = 0, j:number = 0; i < str.length; i++, j++) {
+            if((i+1) % key.length == 0) {
+                j = 0;
+            }
+            let newIndex:number = ((this.alphabet.indexOf(str[i])+1) - (this.alphabet.indexOf(key[j])+1));
+            newIndex = (newIndex + this.alphabet.length) % this.alphabet.length;
+            decipher += this.alphabet[newIndex-1];
+        }
+        return decipher;
+    }
+```
+
+El metodo `decipher()` recibe dos parametros, y dentro de la funcion va iterando por la posicion, haciendo la resta de cada posicion del mensaje y la posicion de la clave, se obtiene una nueva posicion que es el mensaje descifrado. 
+
+
+##  4. Conclusiones
+
+En esta práctica, he aprendido más cosas que están relacionado con
+
+## 5. Bibliografía
+1. [Clases abstractas y interfaces](https://ifgeekthen.everis.com/es/clases-abstractas-e-interfaces)
+
+2. [Relaciones de clases abstractas](https://qastack.mx/programming/597769/how-do-i-create-an-abstract-base-class-in-javascript)
+
+3. [Clases y metodos](https://lenguajejs.com/javascript/caracteristicas/clases-es6/)
+
+4. Apuntes de la clases
+
 
 **JUEGO DE POKEMON**
 
