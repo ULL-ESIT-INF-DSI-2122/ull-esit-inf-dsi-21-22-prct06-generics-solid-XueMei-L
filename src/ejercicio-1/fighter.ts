@@ -5,7 +5,6 @@ export abstract class Fighter{
         hp: 0,
         attack: 0,
         defence: 0,
-        speed:0,
     }   
 
     /**
@@ -23,7 +22,6 @@ export abstract class Fighter{
             this.status.hp = status[0];
             this.status.attack = status[1];
             this.status.defence = status[2];
-            this.status.speed = status[3];
 
     }
 
@@ -34,7 +32,6 @@ export abstract class Fighter{
     getHP() { return this.status.hp; }
     getAttack() { return this.status.attack; }
     getDefense() { return this.status.defence; }
-    getSpeed() { return this.status.speed; }
     
     /**
      * _Inserter new hp after combat_
@@ -53,7 +50,6 @@ export abstract class Fighter{
                   `\n>> HP: ` + this.getHP() +
                   `\n>> Ataque: ` + this.getAttack() +
                   `\n>> Defensa: ` + this.getDefense() +
-                  `\n>> Velocidad: ` + this.getSpeed() + 
                   `\n>> Universo: ` + this.getUniverse()
         );
     }

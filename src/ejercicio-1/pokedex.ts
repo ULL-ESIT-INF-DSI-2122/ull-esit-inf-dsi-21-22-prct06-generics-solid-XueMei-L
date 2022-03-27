@@ -12,7 +12,7 @@ export class Pokedex {
      * _Method that to get fighters collection_
      */
     getFighter() {
-        console.log(`${this.fighterColletion}`);
+        // console.log(`${this.fighterColletion}`);
         return this.fighterColletion;
     }
 
