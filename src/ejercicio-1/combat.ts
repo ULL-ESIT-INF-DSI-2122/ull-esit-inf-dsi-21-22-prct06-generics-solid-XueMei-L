@@ -186,11 +186,11 @@ export class Combat {
     }
 }
 
-let pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", [45, 80, 50], "Pikapi.");
-let yoda:StarWars = new StarWars("yoda", 66, 47, "aliens", [90, 80, 110], "A Jedi craves not these things");
+let pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", 45, 80, 50, "Pikapi.");
+let yoda:StarWars = new StarWars("yoda", 66, 47, "aliens", 90, 80, 110, "A Jedi craves not these things");
 let Colletion:Pokedex = new Pokedex([pikachu, yoda]);
 let b = new showInforFighter(Colletion);
 let a = new Combat(pikachu, yoda);
 a.start();
-b.showInfo();
-// console.table(Colletion, ["name", "height", "weight", "type", "tagline"]);
+// b.showInfo();
+console.table(Colletion.getFighter(), ["name", "height", "weight", "type", "hp", "attack", "defense", "tagline"]);

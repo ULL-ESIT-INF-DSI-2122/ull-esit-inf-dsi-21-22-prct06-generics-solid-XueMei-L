@@ -1,7 +1,7 @@
 
 export abstract class Fighter{
     
-    private status = {
+    protected status = {
         hp: 0,
         attack: 0,
         defence: 0,
@@ -17,14 +17,16 @@ export abstract class Fighter{
      * @param sentence catching phrase of fighter
      */
     constructor(private readonly name:string, private readonly height:number,
-        private readonly weight:number, private readonly type:string, status:number[], private readonly tagline:string) {
+        private readonly weight:number, private readonly type:string, 
+        private hp:number, private readonly attack:number, 
+        private readonly defense:number, private readonly tagline:string) {
             this.name = name;
             this.height = height;
             this.weight = weight;
             this.type = type;
-            this.status.hp = status[0];
-            this.status.attack = status[1];
-            this.status.defence = status[2];
+            this.hp = hp;
+            this.attack = attack;
+            this.defense = defense;
             this.tagline = tagline;
     }
 
@@ -32,9 +34,9 @@ export abstract class Fighter{
     getHeight() { return this.height; }
     getWeight() { return this.weight; }
     getType() { return this.type; }
-    getHP() { return this.status.hp; }
-    getAttack() { return this.status.attack; }
-    getDefense() { return this.status.defence; }
+    getHP() { return this.hp; }
+    getAttack() { return this.attack; }
+    getDefense() { return this.defense; }
     getTagline() { return this.tagline; }
     
     /**

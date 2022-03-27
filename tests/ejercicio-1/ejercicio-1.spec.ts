@@ -6,36 +6,36 @@ import { Marvel } from '../../src/ejercicio-1/marvel';
 import { DcComics } from '../../src/ejercicio-1/dccomics';
 import { StarWars } from '../../src/ejercicio-1/starwars';
 import { DragonBall } from '../../src/ejercicio-1/dragonball';
-import { showInforFighter } from '../../src/ejercicio-1/print'
+import { showInfoFighter } from '../../src/ejercicio-1/print'
 // import { Combat } from '../../src/ejercicio-1/combat';
 
 
 
 describe('Tests for POKEMON GAME', () => {
     //Pokemon
-    const pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", [45, 80, 50], "Pikapi.");
-    const bulbasaur:Pokemon = new Pokemon("bulbasaur", 50, 45, "grass", [49, 49, 65], "Bulba, bulb, saur.");
-    const charizard:Pokemon = new Pokemon("charizard", 60, 55, "fire", [84, 78, 100], "Fire, fire!!");
-    const blastoise:Pokemon = new Pokemon("blastoise", 60, 55, "water", [83, 100, 78], "Blasotoise.");
+    const pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", 45, 80, 50, "Pikapi.");
+    const bulbasaur:Pokemon = new Pokemon("bulbasaur", 50, 45, "grass", 49, 49, 65, "Bulba, bulb, saur.");
+    const charizard:Pokemon = new Pokemon("charizard", 60, 55, "fire", 84, 78, 100, "Fire, fire!!");
+    const blastoise:Pokemon = new Pokemon("blastoise", 60, 55, "water", 83, 100, 78, "Blasotoise.");
     
     //Marvel
-    const captainAmerica:Marvel = new Marvel("captain america", 188, 109, "superhero", [150, 70, 90], "Avegers Assemble.");
-    const ironMan:Marvel = new Marvel("iron man", 198, 193, "techhero", [200, 70, 120], "I am Iron Man.");
-    const hulk:Marvel = new Marvel("hulk", 76, 300, "mutanthero", [300, 35, 120], "I get angry, you will not like me.");
+    const captainAmerica:Marvel = new Marvel("captain america", 188, 109, "superhero", 150, 70, 90, "Avegers Assemble.");
+    const ironMan:Marvel = new Marvel("iron man", 198, 193, "techhero", 200, 70, 120,  "I am Iron Man.");
+    const hulk:Marvel = new Marvel("hulk", 76, 300, "mutanthero", 300, 35, 120,  "I get angry, you will not like me.");
 
     //DC comcis
-    const wonderWoman:DcComics = new DcComics("wonder woman", 183, 75, "superhero", [120, 80, 70], "It is never been a fair Fight.");
-    const batMan:DcComics = new DcComics("bat man", 188, 95, "superhero", [130, 75, 90], "I am Vengeance! I am the Night! I am Bat Man.");
-    const kingShark:DcComics = new DcComics("king shark", 200, 120, "mutanthero", [170, 60, 150], "King Shark is a shark.");
+    const wonderWoman:DcComics = new DcComics("wonder woman", 183, 75, "superhero", 120, 80, 70,  "It is never been a fair Fight.");
+    const batMan:DcComics = new DcComics("bat man", 188, 95, "superhero", 130, 75, 90,  "I am Vengeance! I am the Night! I am Bat Man.");
+    const kingShark:DcComics = new DcComics("king shark", 200, 120, "mutanthero", 170, 60, 150,  "King Shark is a shark.");
 
     //Star wars
-    const darthVader:StarWars = new StarWars("darth varder", 203, 120, "blackwarrior", [135, 90, 60], "I am your father.");
-    const lukeSkywalker:StarWars = new StarWars("luke skywalker", 172, 73, "human", [100, 70, 60], "Your'll find. I'm full of suprises.");
-    const yoda:StarWars = new StarWars("yoda", 66, 47, "aliens", [90, 80, 110], "A Jedi craves not these things");
+    const darthVader:StarWars = new StarWars("darth varder", 203, 120, "blackwarrior", 135, 90, 60,  "I am your father.");
+    const lukeSkywalker:StarWars = new StarWars("luke skywalker", 172, 73, "human", 100, 70, 60,  "Your'll find. I'm full of suprises.");
+    const yoda:StarWars = new StarWars("yoda", 66, 47, "aliens", 90, 80, 110,  "A Jedi craves not these things");
 
     //DragonBall
-    const sonGoKu:DragonBall = new DragonBall("son go ku", 175, 80, "supersaiyan", [100, 102, 76], "kame hame ka!");
-    const piccolo:DragonBall = new DragonBall("piccolo", 226, 150, "demon", [150, 55, 84] , "I will be an even stronger fighter than i already am.");
+    const sonGoKu:DragonBall = new DragonBall("son go ku", 175, 80, "supersaiyan", 100, 102, 76,  "kame hame ka!");
+    const piccolo:DragonBall = new DragonBall("piccolo", 226, 150, "demon", 150, 55, 84, "I will be an even stronger fighter than i already am.");
 
 
     let PokemonCollletion:Pokedex = new Pokedex([]);
@@ -47,7 +47,7 @@ describe('Tests for POKEMON GAME', () => {
     let finallyColletion:Pokedex = new Pokedex([pikachu, bulbasaur, charizard, blastoise, captainAmerica,ironMan, hulk, 
     wonderWoman, batMan, kingShark, darthVader, lukeSkywalker, yoda, sonGoKu, piccolo]);
 
-    let showColletion = new showInforFighter(finallyColletion);
+    let showColletion = new showInfoFighter(finallyColletion);
     describe('Tests for POKEMON GAME', () => {
 
         // Tests for class ---------------------------------------------------------------------
@@ -97,7 +97,7 @@ describe('Tests for POKEMON GAME', () => {
 
     describe('Tests for pikachu (class Pokedex)', () => {
 
-        // const pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", [45, 80, 50], "Pikapi.");
+        // const pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", 45, 80, 50,  "Pikapi.");
 
         it('Nombre = pikachu', () => {
             expect(pikachu.getName()).to.be.equal("pikachu");
