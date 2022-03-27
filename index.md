@@ -651,19 +651,15 @@ En esta práctica, he aprendido más cosas que están relacionado con
 
 **JUEGO DE POKEMON**
 
-![test1](img/pokemo.png)
+![test1](img/game1.png)
 
-![histroy](img/historia.png) 
-![combate](img/combate.png)
+![histroy](img/game2.png) 
+![combate](img/table.png)
 
 **JUEGO DE CONECT4**
 
-![test1](img/eje2.png)
+![test1](img/eje1.png)
 
-![test1](img/1.png)
-![test1](img/2.png)
-![test1](img/3.png)
-![test1](img/4.png)
-![test1](img/5.png)
-![test1](img/6.png)
-![test1](img/7.png)
+![test1](img/eje2.png)
+![test1](img/eje3.png)
+
