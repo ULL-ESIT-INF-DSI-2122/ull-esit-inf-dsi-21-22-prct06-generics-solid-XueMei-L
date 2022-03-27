@@ -12,6 +12,7 @@ import { Combat } from '../../src/ejercicio-1/combat';
 
 
 describe('Tests for POKEMON GAME', () => {
+    console.log = function() {};
     //Pokemon
     const pikachu:Pokemon = new Pokemon("pikachu", 60, 50, "electric", 45, 80, 50, "Pikapi.");
     const bulbasaur:Pokemon = new Pokemon("bulbasaur", 50, 45, "grass", 49, 49, 65, "Bulba, bulb, saur.");

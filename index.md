@@ -118,6 +118,30 @@ export abstract class Fighter{
 
 }
 ```
+La clase abstractra está definiendo los `getters()` para obtener la informacion de cada fighter. Por el uso de los principios de SOLID. Hay una clase `showInfoFighter()` que realiza la mostracion de estas informaciones.
+
+**CLass Print()**
+```
+import { Pokedex } from './pokedex';
+
+/**
+ * _Class showInfoFighter_
+ */
+export class showInfoFighter {
+    constructor(private colletion:Pokedex) {
+    }
+
+    /**
+     * _Method that use console.table to show information of fighter_
+     */
+    public showInfo() {
+        console.table(this.colletion.getFighter(), ["name", "height", "weight", "type", "hp", "attack", "defense", "tagline"]);
+    }
+}
+```
+Dentro de la clase `showInfoFighter()`, hay un metodo llamado `showInfo()`, lo que hace es mostrar la infomacion usando la tabla. Como la siguiente:
+
+![combate](img/table.png)
 
 **Una de las subclases**
 ```
@@ -154,6 +178,9 @@ export class DcComics extends Fighter {
     }
 }
 ```
+Todas las subclases de la clase abstracta tiene la misma estructura que el ejemplo anterior.
+El metodo `getUniverse()` es un metodo que obliga a implementar en las subclases. Lo que realiza es devolver el universo de cada `fighter`.
+
 
 **Clase combat**
 Donde realiza el combate entre dos fighters
@@ -375,18 +402,17 @@ export class Combat {
     }
 }
 ```
+Por otro lado la clase de Combat donde realiza la batalla entre dos contrincantes.
+
+Más concretamente, en la clase Combathe creado constructor `sepWorldWar()` donde compara el daño que realiza cada pokemon y un metodo `start()` que realiza el proceso de batalla.
+
+En la funcion sepWorldWar tiene parametros fighter1 fighter2, son de tipo `Fighter`. Dependiendo de los tipos de fighter, el metodo calcula el daño realizado de uno a otro .
 
 ### 3.2. Ejercicio 2 - DSIflix
 
 En este ejercicio consiste en implementar una interfaz genérica llamado `Streamable` y una clase abstracta `BasicStreamableCollection` y otras clases abstractas que vamos a ver en lo siguiente:
 
 **Clase abstracta sobre BasicStreamableCollection**
-
-1. Definir constructor
-2. Devolver la longitud de la colección
-3. Definir el método de búsqueda general
-4. Definir el método de imprimir resultado
-
 ```
 import { StreamableSeach } from "./StreamableSeach";
 import { Streamable } from './Streamable'
@@ -426,18 +452,25 @@ export abstract class BasicStreamableCollection<T> implements StreamableSeach<T>
 
 }
 ```
+Es una clase abstracta, heredada la interfaz `Stramable`, tiene metodos `addElement()`, para añadir elemento de tipo generica a la colection. y los otros dos metodos deben ser implementados en las subclases.
 
 **Interfaz de Stramable** :
 
 ```
 export interface Streamable<T> {
-    getNumber():number;
-    busqueda(tipo: string, nombre:string): T[];
+    addElement(elemento:T):void;
+    getElement():T[];
+}
+```
+
+**Interfaz de StramableSeach** :
+```
+export interface StreamableSeach<T>{
+    searchElement(type: string, name:string): T[];
 }
 ```
 
 **Realizar la busqueda sobre documentales**
-
 ```
 import {BasicStreamableColletion} from './basicStreamableCollection';
 
@@ -537,57 +570,76 @@ import {BasicStreamableColletion} from './basicStreamableCollection';
 **Realizar la busqueda sobre series**
 
 ```
-import {BasicStreamableColletion} from './basicStreamableCollection';
+import {BasicStreamableCollection} from '../../src/ejercicio-2/BasicStreamableCollection'
 
 /**
- * Definir la estructura de Series
+ * TypeSerie to describe informations of serie
  */
-export type series = {
-    nombre: string;
-    tipo: string;
-    year: number;
-    temporar: number;
-    estrealla: number;
+export type typeSerie = {
+    title:string;
+    year:number;
+    season:number;
+    star:number;
+    type:string;
 }
 
 /**
- * Clase Series
+ * Class Series to describe series collection
  */
-export class Series extends BasicStreamableColletion<series> {
-    constructor(elementos: series[]){
-        super(elementos);
+export class Series extends BasicStreamableCollection<typeSerie> {
+
+    constructor(private collectionSeries:typeSerie[]) {
+        super(collectionSeries);
     }
+
     /**
-     * Realizar la busqueda
-     * @param tipo tipo de busqueda que quiere realizr
-     * @param value el contenido que quiere buscar
+     * _Method that to get series objects_
+     * @returns series objects
      */
-    busqueda(tipo:string, value:string):any{
-        if(tipo == "nombre") {
-            return this.collecion.filter((n) => (n.nombre == value));
-        }else if(tipo == "tipo") {
-            return this.collecion.filter((n) => (n.tipo == value));
-        }else if(tipo == "year") {
-            return this.collecion.filter((n) => n.year = Number(value));
-        }else if(tipo == "temporar") {
-            return this.collecion.filter((n) => n.temporar == Number(value));
-        }else if(tipo == "estrella") {
-            return this.collecion.filter((n) => n.estrealla >= Number(value));
-        }else {
-            return "No existe la serie que desea a buscar";
+    getElement():typeSerie[]{
+        return this.collectionSeries;
+    }
+
+    /**
+     * _Method that to seach series with corresponding information_
+     * @param data information that to seach
+     * @param value value to seach
+     */
+    searchElement(data:string, value:string):typeSerie[]{
+        let result:typeSerie[] = [];
+        switch(data.toLowerCase()) {
+            case ('title'):
+                result = this.collectionSeries.filter((n) => n.title == value);
+                break;
+            case ('year'):
+                result = this.collectionSeries.filter((n) => n.year == Number(value));
+                break;
+            case ('season'):
+                result = this.collectionSeries.filter((n) => n.season == Number(value));
+                break;
+            case ('star'):
+                result = this.collectionSeries.filter((n) => n.star >= Number(value));
+                break;
+            case ('type'):
+                result = this.collectionSeries.filter((n) => n.type == value);
+                break;
+            default:
+                console.log(`cannot find serie.`);
         }
-    }
-    /**
-     * Funcion de imprimir el resultado
-     */
-    print(){
-        this.collecion.forEach((tipo, value) => {
-            console.log(`tipo que desea buscar: ${tipo}
-                         nombre concreto que desea a buscar ${value}`);
-        })
+        return result;
     }
 }
 ```
+Las subclases tiene la misma estructura, puesto que son subclases de la clase `BasicStreamable`, cada subclase tiene su propio tipo. Como por ejemplo: la clase `Films` tiene tipo `typeFilm` que tiene estructura del tipo lo siguiente:
+```
+export type typeFilm = {
+    title:string;
+    year:number;
+    type:string;
+    region:string;
+}
+```
+y segun la estructura del tipo de cada clase, se realiza distinta forma de la busque, segun `nombre`, `año`, `temporada`, etc.
 
 ### 3.3. Ejercicio 3 - El cifrado indescifrable
 
@@ -654,7 +706,7 @@ En esta práctica, he aprendido más cosas que están relacionado con
 ![test1](img/game1.png)
 
 ![histroy](img/game2.png) 
-![combate](img/table.png)
+
 
 **JUEGO DE CONECT4**
 
